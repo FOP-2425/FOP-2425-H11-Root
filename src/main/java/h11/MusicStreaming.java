@@ -1,5 +1,6 @@
 package h11;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -53,10 +54,17 @@ public final class MusicStreaming {
 
     public List<String> getTopSongs() {
         return getGlobalPlayCounts().entrySet().stream()
-            .sorted(Map.Entry.<Song, Long>comparingByValue().reversed())
+            .sorted(Map.Entry.<Song, Long>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::name))))
             .limit(20)
             .map(entry -> String.format("%s (%d plays)", entry.getKey().name(), entry.getValue()))
             .toList();
+    }
+
+    public long getArtistPlaytime(Artist artist) {
+        Map<Song, Long> globalPlayCounts = getGlobalPlayCounts();
+        return artist.getAllSongs().stream()
+            .mapToLong(song -> globalPlayCounts.getOrDefault(song, 0L) * song.durationInSeconds())
+            .sum();
     }
 
     public Map<Artist, Long> getArtistPlaytime() {
@@ -64,9 +72,7 @@ public final class MusicStreaming {
         return artists.stream()
             .collect(Collectors.toMap(
                 artist -> artist,
-                artist -> artist.getAllSongs().stream()
-                    .mapToLong(song -> globalPlayCounts.getOrDefault(song, 0L) * song.durationInSeconds())
-                    .sum()
+                this::getArtistPlaytime
             ));
     }
 
