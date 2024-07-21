@@ -1,4 +1,18 @@
 package h11;
 
-public record Genre(String name) {
+public enum Genre {
+    ROCK,
+    POP,
+    JAZZ,
+    CLASSICAL,
+    HIPHOP,
+    RAP,
+    METAL,
+    COUNTRY,
+    ELECTRONIC,
+    DANCE,
+    LATIN,
+    ALTERNATIVE,
+    KPOP,
+    OTHER
 }
