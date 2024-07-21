@@ -1,6 +1,8 @@
 package h11;
 
 import org.tudalgo.algoutils.student.annotation.DoNotTouch;
+import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
+import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import java.util.Comparator;
 import java.util.List;
@@ -28,6 +30,7 @@ public final class User {
         return pricePerMonth;
     }
 
+    @StudentImplementationRequired
     public List<Song> getPlayedSongs() {
         return playingHistory.stream()
                 .map(PlayingHistory::song)
@@ -35,22 +38,38 @@ public final class User {
                 .toList();
     }
 
+    @StudentImplementationRequired
     public long getPlayCount(Song song) {
         return playingHistory.stream()
                 .filter(playingHistory -> playingHistory.song().equals(song))
                 .count();
     }
 
+    @StudentImplementationRequired
     public List<Map.Entry<Song, Long>> getPlayCounts() {
         return playingHistory.stream()
-            .collect(Collectors.groupingBy(PlayingHistory::song, Collectors.counting()))
+            .collect(Collectors.groupingBy(
+                PlayingHistory::song,
+                Collectors.counting()
+            ))
             .entrySet().stream()
-            .sorted(Map.Entry.<Song, Long>comparingByValue().reversed()
-                .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::name))))
+            .sorted(Map.Entry.<Song, Long>comparingByValue()
+                .reversed()
+                .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::name)))
+            )
             .toList();
 
     }
 
+    @StudentImplementationRequired
+    public Song getFavoriteSong() {
+        return getPlayCounts().stream()
+            .map(Map.Entry::getKey)
+            .findFirst()
+            .orElse(null);
+    }
+
+    @StudentImplementationRequired
     public List<String> getTopPlayedSongsList() {
         return getPlayCounts().stream()
                 .limit(3)
@@ -58,13 +77,7 @@ public final class User {
                 .toList();
     }
 
-    public Song getFavoriteSong() {
-        return getPlayCounts().stream()
-                .map(Map.Entry::getKey)
-                .findFirst()
-                .orElse(null);
-    }
-
+    @StudentImplementationRequired
     public Stream<Song> generateRandomPlaylist() {
         return Stream.generate(this::getRandomSong);
     }
@@ -79,28 +92,4 @@ public final class User {
     public void setPricePerMonth(double pricePerMonth) {
         this.pricePerMonth = pricePerMonth;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (User) obj;
-        return Objects.equals(this.username, that.username) &&
-            Double.doubleToLongBits(this.pricePerMonth) == Double.doubleToLongBits(that.pricePerMonth) &&
-            Objects.equals(this.playingHistory, that.playingHistory);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(username, pricePerMonth, playingHistory);
-    }
-
-    @Override
-    public String toString() {
-        return "User[" +
-            "username=" + username + ", " +
-            "pricePerMonth=" + pricePerMonth + ", " +
-            "playingHistory=" + playingHistory + ']';
-    }
-
 }

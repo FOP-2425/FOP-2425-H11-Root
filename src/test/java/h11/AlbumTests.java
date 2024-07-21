@@ -18,6 +18,9 @@ public class AlbumTests {
         Album album = new Album("Album", Genre.ROCK, songs);
 
         assertEquals(200, album.getAverageDuration());
+
+        Album album2 = new Album("Album 2", Genre.ROCK, List.of());
+        assertEquals(0, album2.getAverageDuration());
     }
 
     @Test

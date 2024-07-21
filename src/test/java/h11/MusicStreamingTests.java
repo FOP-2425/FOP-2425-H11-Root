@@ -127,11 +127,11 @@ public class MusicStreamingTests {
 
         MusicStreaming ms = new MusicStreaming(List.of(artist1, artist2, artist3), List.of());
 
-        Map<Genre, List<Song>> expected = Map.of(
-            Genre.ROCK, songs.subList(0, 6),
-            Genre.POP, songs.subList(6, 12)
+        Map<Genre, List<Album>> expected = Map.of(
+            Genre.ROCK, List.of(album1, album2),
+            Genre.POP, List.of(album3, album4)
         );
-        assertEquals(expected, ms.getSongsByGenre());
+        assertEquals(expected, ms.getAlbumsByGenre());
     }
 
     @Test
@@ -177,18 +177,18 @@ public class MusicStreamingTests {
 
         MusicStreaming ms = new MusicStreaming(List.of(artist1, artist2, artist3), List.of(user1, user2));
 
-        Map<Song, Long> expected = Map.of(
-            songs.get(0), 2L,
-            songs.get(1), 3L,
-            songs.get(2), 2L,
-            songs.get(3), 2L,
-            songs.get(4), 2L
+        List<Map.Entry<Song, Long>> expected = List.of(
+            Map.entry(songs.get(1), 3L),
+            Map.entry(songs.get(0), 2L),
+            Map.entry(songs.get(2), 2L),
+            Map.entry(songs.get(3), 2L),
+            Map.entry(songs.get(4), 2L)
         );
         assertEquals(expected, ms.getGlobalPlayCounts());
     }
 
     @Test
-    public void testGetTopSongs() {
+    public void testGetTopPlayedSongsList() {
         List<Song> songs = List.of(
             new Song("Song 1", 100),
             new Song("Song 2", 200),
@@ -237,7 +237,7 @@ public class MusicStreamingTests {
             "Song 4 (2 plays)",
             "Song 5 (2 plays)"
         );
-        assertEquals(expected, ms.getTopSongs());
+        assertEquals(expected, ms.getTopPlayedSongsList());
     }
 
     @Test
