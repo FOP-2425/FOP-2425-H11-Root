@@ -41,23 +41,27 @@ public final class User {
                 .count();
     }
 
-    public Map<Song, Long> getPlayCounts() {
+    public List<Map.Entry<Song, Long>> getPlayCounts() {
         return playingHistory.stream()
-            .collect(Collectors.groupingBy(PlayingHistory::song, Collectors.counting()));
+            .collect(Collectors.groupingBy(PlayingHistory::song, Collectors.counting()))
+            .entrySet().stream()
+            .sorted(Map.Entry.<Song, Long>comparingByValue().reversed()
+                .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::name))))
+            .toList();
+
     }
 
     public List<String> getTopPlayedSongsList() {
-        return getPlayCounts().entrySet().stream()
-                .sorted(Map.Entry.<Song, Long>comparingByValue().reversed())
-                .limit(20)
+        return getPlayCounts().stream()
+                .limit(3)
                 .map(entry -> String.format("%s (%d plays)", entry.getKey().name(), entry.getValue()))
                 .toList();
     }
 
     public Song getFavoriteSong() {
-        return getPlayCounts().entrySet().stream()
-                .max(Map.Entry.comparingByValue())
+        return getPlayCounts().stream()
                 .map(Map.Entry::getKey)
+                .findFirst()
                 .orElse(null);
     }
 

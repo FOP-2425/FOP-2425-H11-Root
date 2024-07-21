@@ -44,7 +44,7 @@ public final class MusicStreaming {
 
     public Map<Song, Long> getGlobalPlayCounts() {
         return users.stream()
-            .flatMap(user -> user.getPlayCounts().entrySet().stream())
+            .flatMap(user -> user.getPlayCounts().stream())
             .collect(Collectors.groupingBy(
                 Map.Entry::getKey,
                 Collectors.summingLong(Map.Entry::getValue))
