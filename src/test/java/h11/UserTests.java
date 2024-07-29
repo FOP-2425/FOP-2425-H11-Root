@@ -19,16 +19,16 @@ public class UserTests {
             new Song("Song 5", 500),
             new Song("Song 6", 600)
         );
-        List<PlayingHistory> playingHistory = List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date())
+        List<PlayedSong> playedSong = List.of(
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date())
         );
 
-        User user = new User("User", 10, playingHistory);
+        User user = new User("User", 10, playedSong);
 
         assertEquals(songs.subList(0, 4), user.getPlayedSongs());
     }
@@ -43,16 +43,16 @@ public class UserTests {
             new Song("Song 5", 500),
             new Song("Song 6", 600)
         );
-        List<PlayingHistory> playingHistory = List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date())
+        List<PlayedSong> playedSong = List.of(
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date())
         );
 
-        User user = new User("User", 10, playingHistory);
+        User user = new User("User", 10, playedSong);
 
         assertEquals(2, user.getPlayCount(songs.get(1)));
         assertEquals(1, user.getPlayCount(songs.get(0)));
@@ -69,16 +69,16 @@ public class UserTests {
             new Song("Song 5", 500),
             new Song("Song 6", 600)
         );
-        List<PlayingHistory> playingHistory = List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date())
+        List<PlayedSong> playedSong = List.of(
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date())
         );
 
-        User user = new User("User", 10, playingHistory);
+        User user = new User("User", 10, playedSong);
 
         List<Map.Entry<Song, Long>> expected = List.of(
             Map.entry(songs.get(1), 2L),
@@ -99,17 +99,17 @@ public class UserTests {
             new Song("Song 5", 500),
             new Song("Song 6", 600)
         );
-        List<PlayingHistory> playingHistory = List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(5), new Date())
+        List<PlayedSong> playedSong = List.of(
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(5), new Date())
         );
 
-        User user = new User("User", 10, playingHistory);
+        User user = new User("User", 10, playedSong);
 
         List<String> expected = List.of(
             "Song 2 (2 plays)",
@@ -129,16 +129,16 @@ public class UserTests {
             new Song("Song 5", 500),
             new Song("Song 6", 600)
         );
-        List<PlayingHistory> playingHistory = List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date())
+        List<PlayedSong> playedSong = List.of(
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date())
         );
 
-        User user = new User("User", 10, playingHistory);
+        User user = new User("User", 10, playedSong);
 
         assertEquals(songs.get(1), user.getFavoriteSong());
     }

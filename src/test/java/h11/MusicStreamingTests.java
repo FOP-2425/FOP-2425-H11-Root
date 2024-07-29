@@ -160,19 +160,19 @@ public class MusicStreamingTests {
         Artist artist3 = new Artist("Artist 3", List.of(album4));
 
         User user1 = new User("User 1", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date())
         ));
         User user2 = new User("User 2", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date())
         ));
 
         MusicStreaming ms = new MusicStreaming(List.of(artist1, artist2, artist3), List.of(user1, user2));
@@ -213,19 +213,19 @@ public class MusicStreamingTests {
         Artist artist3 = new Artist("Artist 3", List.of(album4));
 
         User user1 = new User("User 1", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date())
         ));
         User user2 = new User("User 2", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date())
         ));
 
         MusicStreaming ms = new MusicStreaming(List.of(artist1, artist2, artist3), List.of(user1, user2));
@@ -266,20 +266,20 @@ public class MusicStreamingTests {
         Artist artist3 = new Artist("Artist 3", List.of(album4));
 
         User user1 = new User("User 1", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date())
         ));
         User user2 = new User("User 2", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date()),
-            new PlayingHistory(songs.get(6), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date()),
+            new PlayedSong(songs.get(6), new Date())
         ));
 
         MusicStreaming ms = new MusicStreaming(List.of(artist1, artist2, artist3), List.of(user1, user2));
@@ -321,20 +321,20 @@ public class MusicStreamingTests {
         Artist artist3 = new Artist("Artist 3", List.of(album4));
 
         User user1 = new User("User 1", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date())
         ));
         User user2 = new User("User 2", 10, List.of(
-            new PlayingHistory(songs.get(0), new Date()),
-            new PlayingHistory(songs.get(1), new Date()),
-            new PlayingHistory(songs.get(2), new Date()),
-            new PlayingHistory(songs.get(3), new Date()),
-            new PlayingHistory(songs.get(4), new Date()),
-            new PlayingHistory(songs.get(6), new Date())
+            new PlayedSong(songs.get(0), new Date()),
+            new PlayedSong(songs.get(1), new Date()),
+            new PlayedSong(songs.get(2), new Date()),
+            new PlayedSong(songs.get(3), new Date()),
+            new PlayedSong(songs.get(4), new Date()),
+            new PlayedSong(songs.get(6), new Date())
         ));
 
         MusicStreaming ms = new MusicStreaming(List.of(artist1, artist2, artist3), List.of(user1, user2));

@@ -1,22 +1,20 @@
 package h11;
 
 import org.tudalgo.algoutils.student.annotation.DoNotTouch;
-import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class User {
     private final String username;
     private double pricePerMonth;
-    private List<PlayingHistory> playingHistory;
+    private List<PlayedSong> playingHistory;
 
-    public User(String username, double pricePerMonth, List<PlayingHistory> playingHistory) {
+    public User(String username, double pricePerMonth, List<PlayedSong> playingHistory) {
         this.username = username;
         this.pricePerMonth = pricePerMonth;
         this.playingHistory = playingHistory;
@@ -33,7 +31,7 @@ public final class User {
     @StudentImplementationRequired
     public List<Song> getPlayedSongs() {
         return playingHistory.stream()
-                .map(PlayingHistory::song)
+                .map(PlayedSong::song)
                 .distinct()
                 .toList();
     }
@@ -41,7 +39,7 @@ public final class User {
     @StudentImplementationRequired
     public long getPlayCount(Song song) {
         return playingHistory.stream()
-                .filter(playingHistory -> playingHistory.song().equals(song))
+                .filter(playedSong -> playedSong.song().equals(song))
                 .count();
     }
 
@@ -49,7 +47,7 @@ public final class User {
     public List<Map.Entry<Song, Long>> getPlayCounts() {
         return playingHistory.stream()
             .collect(Collectors.groupingBy(
-                PlayingHistory::song,
+                PlayedSong::song,
                 Collectors.counting()
             ))
             .entrySet().stream()
