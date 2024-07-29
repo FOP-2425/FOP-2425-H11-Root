@@ -292,7 +292,7 @@ public class MusicStreamingTests {
         assertEquals(expected.get(artist1), ms.getArtistPlaytime(artist1));
         assertEquals(expected.get(artist2), ms.getArtistPlaytime(artist2));
         assertEquals(expected.get(artist3), ms.getArtistPlaytime(artist3));
-        assertEquals(expected, ms.getArtistPlaytime());
+        assertEquals(expected, ms.getArtistPlaytimes());
     }
 
     @Test

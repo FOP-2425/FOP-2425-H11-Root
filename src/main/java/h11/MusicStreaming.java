@@ -1,6 +1,5 @@
 package h11;
 
-import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import java.util.Comparator;
@@ -90,7 +89,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
     }
 
     @StudentImplementationRequired
-    public Map<Artist, Long> getArtistPlaytime() {
+    public Map<Artist, Long> getArtistPlaytimes() {
         return artists.stream()
             .collect(Collectors.toMap(
                 artist -> artist,
@@ -100,7 +99,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
 
     @StudentImplementationRequired
     public Artist getMostPlayedArtist() {
-        return getArtistPlaytime().entrySet().stream()
+        return getArtistPlaytimes().entrySet().stream()
             .max(Map.Entry.comparingByValue())
             .map(Map.Entry::getKey)
             .orElse(null);
