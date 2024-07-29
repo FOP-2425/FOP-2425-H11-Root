@@ -9,16 +9,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public final class MusicStreaming {
-    private final List<Artist> artists;
-    private final List<User> users;
-
-    @DoNotTouch
-    public MusicStreaming(List<Artist> artists, List<User> users) {
-        this.artists = artists;
-        this.users = users;
-    }
-
+public record MusicStreaming(List<Artist> artists, List<User> users) {
     @StudentImplementationRequired
     public List<Song> getAllSongs() {
         return artists.stream()
