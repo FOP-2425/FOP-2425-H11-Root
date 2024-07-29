@@ -56,7 +56,6 @@ public final class User {
                 .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::name)))
             )
             .toList();
-
     }
 
     @StudentImplementationRequired
@@ -73,17 +72,6 @@ public final class User {
                 .limit(3)
                 .map(entry -> String.format("%s (%d plays)", entry.getKey().name(), entry.getValue()))
                 .toList();
-    }
-
-    @StudentImplementationRequired
-    public Stream<Song> generateRandomPlaylist() {
-        return Stream.generate(this::getRandomSong);
-    }
-
-    @DoNotTouch
-    public Song getRandomSong() {
-        // TODO: implement this method
-        return null;
     }
 
     @DoNotTouch

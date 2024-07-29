@@ -1,5 +1,6 @@
 package h11;
 
+import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import java.util.Comparator;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public record MusicStreaming(List<Artist> artists, List<User> users) {
     @StudentImplementationRequired
@@ -14,6 +16,16 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
         return artists.stream()
             .flatMap(artist -> artist.getAllSongs().stream())
             .toList();
+    }
+
+    @StudentImplementationRequired
+    public Stream<Song> generateRandomPlaylist() {
+        return Stream.generate(this::getRandomSong);
+    }
+
+    @DoNotTouch
+    public Song getRandomSong() {
+        return getAllSongs().get((int) (Math.random() * getAllSongs().size()));
     }
 
     @StudentImplementationRequired
