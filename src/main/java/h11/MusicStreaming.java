@@ -98,7 +98,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
      * Calculates the global play counts for all songs by summing the play counts from all users.
      *
      * @return a list of entries where each entry is a song and its total play count, sorted by play count in descending order.
-     * If two songs have the same play count, the entries are ordered alphabetically by the song name.
+     * Songs with the same play count are ordered alphabetically by the song title.
      */
     @StudentImplementationRequired
     public List<Map.Entry<Song, Long>> getGlobalPlayCounts() {

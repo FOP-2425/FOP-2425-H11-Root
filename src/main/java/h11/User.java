@@ -85,7 +85,7 @@ public final class User {
      * Retrieves the play counts for each song played by the user.
      *
      * @return a list of entries where each entry is a song and its play count, sorted by play count in descending order.
-     * If two songs have the same play count, the entries are ordered alphabetically by the song name.
+     * Songs with the same play count are ordered alphabetically by the song title.
      */
     @StudentImplementationRequired
     public List<Map.Entry<Song, Long>> getPlayCounts() {
