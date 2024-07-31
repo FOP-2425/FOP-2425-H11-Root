@@ -4,7 +4,7 @@ import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import java.util.List;
 
-public record Album(String name, Genre genre, List<Song> songs) {
+public record Album(String title, Genre genre, List<Song> songs) {
     @StudentImplementationRequired
     public double getAverageDuration() {
         return songs.stream()
