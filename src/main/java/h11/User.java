@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public final class User {
     private final String username;
@@ -53,7 +52,7 @@ public final class User {
             .entrySet().stream()
             .sorted(Map.Entry.<Song, Long>comparingByValue()
                 .reversed()
-                .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::name)))
+                .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::title)))
             )
             .toList();
     }
@@ -70,7 +69,7 @@ public final class User {
     public List<String> getTopPlayedSongsList() {
         return getPlayCounts().stream()
                 .limit(3)
-                .map(entry -> String.format("%s (%d plays)", entry.getKey().name(), entry.getValue()))
+                .map(entry -> String.format("%s (%d plays)", entry.getKey().title(), entry.getValue()))
                 .toList();
     }
 

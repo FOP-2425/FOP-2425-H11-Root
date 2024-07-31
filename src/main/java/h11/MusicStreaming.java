@@ -64,7 +64,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .entrySet().stream()
             .sorted(Map.Entry.<Song, Long>comparingByValue()
                 .reversed()
-                .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::name)))
+                .thenComparing(Map.Entry.comparingByKey(Comparator.comparing(Song::title)))
             )
             .toList();
     }
@@ -73,7 +73,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
     public List<String> getTopPlayedSongsList() {
         return getGlobalPlayCounts().stream()
             .limit(5)
-            .map(entry -> String.format("%s (%d plays)", entry.getKey().name(), entry.getValue()))
+            .map(entry -> String.format("%s (%d plays)", entry.getKey().title(), entry.getValue()))
             .toList();
     }
 
