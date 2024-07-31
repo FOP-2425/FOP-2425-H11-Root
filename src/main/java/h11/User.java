@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Represents a user of the music streaming platform.
  */
-public final class User {
+public class User {
     private final String username;
     private double pricePerMonth;
     private List<PlayedSong> playingHistory;
