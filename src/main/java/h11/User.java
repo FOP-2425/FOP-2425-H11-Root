@@ -13,18 +13,29 @@ public final class User {
     private double pricePerMonth;
     private List<PlayedSong> playingHistory;
 
+    @DoNotTouch
     public User(String username, double pricePerMonth, List<PlayedSong> playingHistory) {
         this.username = username;
         this.pricePerMonth = pricePerMonth;
         this.playingHistory = playingHistory;
     }
 
-    public String username() {
+    @DoNotTouch
+    public String getUsername() {
         return username;
     }
-
-    public double pricePerMonth() {
+    @DoNotTouch
+    public double getPricePerMonth() {
         return pricePerMonth;
+    }
+    @DoNotTouch
+    public List<PlayedSong> getPlayingHistory() {
+        return playingHistory;
+    }
+
+    @DoNotTouch
+    public void setPricePerMonth(double pricePerMonth) {
+        this.pricePerMonth = pricePerMonth;
     }
 
     @StudentImplementationRequired
@@ -71,10 +82,5 @@ public final class User {
                 .limit(3)
                 .map(entry -> String.format("%s (%d plays)", entry.getKey().title(), entry.getValue()))
                 .toList();
-    }
-
-    @DoNotTouch
-    public void setPricePerMonth(double pricePerMonth) {
-        this.pricePerMonth = pricePerMonth;
     }
 }

@@ -381,11 +381,11 @@ public class MusicStreamingTests {
         MusicStreaming ms = new MusicStreaming(List.of(), List.of(user1, user2));
 
         ms.adjustPrice(10);
-        assertEquals(22, user1.pricePerMonth());
-        assertEquals(11, user2.pricePerMonth());
+        assertEquals(22, user1.getPricePerMonth());
+        assertEquals(11, user2.getPricePerMonth());
 
         ms.adjustPrice(-20);
-        assertEquals(17.6, user1.pricePerMonth());
-        assertEquals(8.8, user2.pricePerMonth());
+        assertEquals(17.6, user1.getPricePerMonth());
+        assertEquals(8.8, user2.getPricePerMonth());
     }
 }
