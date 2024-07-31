@@ -34,32 +34,6 @@ public class UserTests {
     }
 
     @Test
-    public void testGetPlayCount() {
-        List<Song> songs = List.of(
-            new Song("Song 1", 100),
-            new Song("Song 2", 200),
-            new Song("Song 3", 300),
-            new Song("Song 4", 400),
-            new Song("Song 5", 500),
-            new Song("Song 6", 600)
-        );
-        List<PlayedSong> playedSong = List.of(
-            new PlayedSong(songs.get(0), new Date()),
-            new PlayedSong(songs.get(1), new Date()),
-            new PlayedSong(songs.get(2), new Date()),
-            new PlayedSong(songs.get(3), new Date()),
-            new PlayedSong(songs.get(1), new Date()),
-            new PlayedSong(songs.get(2), new Date())
-        );
-
-        User user = new User("User", 10, playedSong);
-
-        assertEquals(2, user.getPlayCount(songs.get(1)));
-        assertEquals(1, user.getPlayCount(songs.get(0)));
-        assertEquals(0, user.getPlayCount(songs.get(5)));
-    }
-
-    @Test
     public void testGetPlayCounts() {
         List<Song> songs = List.of(
             new Song("Song 1", 100),

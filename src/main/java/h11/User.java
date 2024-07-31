@@ -47,13 +47,6 @@ public final class User {
     }
 
     @StudentImplementationRequired
-    public long getPlayCount(Song song) {
-        return playingHistory.stream()
-                .filter(playedSong -> playedSong.song().equals(song))
-                .count();
-    }
-
-    @StudentImplementationRequired
     public List<Map.Entry<Song, Long>> getPlayCounts() {
         return playingHistory.stream()
             .collect(Collectors.groupingBy(
