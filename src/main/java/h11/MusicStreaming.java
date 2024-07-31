@@ -25,7 +25,11 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
 
     @DoNotTouch
     public Song getRandomSong() {
-        return getAllSongs().get((int) (Math.random() * getAllSongs().size()));
+        List<Song> allSongs = getAllSongs();
+        if (allSongs.isEmpty()) {
+            return null;
+        }
+        return allSongs.get((int) (Math.random() * allSongs.size()));
     }
 
     @StudentImplementationRequired
