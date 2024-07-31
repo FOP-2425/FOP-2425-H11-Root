@@ -13,19 +13,6 @@ import java.util.List;
  */
 public record Album(String title, Genre genre, List<Song> songs) {
     /**
-     * Calculates the average duration of the songs on the album.
-     *
-     * @return the average duration of the songs in seconds. If there are no songs, returns 0.
-     */
-    @StudentImplementationRequired
-    public double getAverageDuration() {
-        return songs.stream()
-                .mapToInt(Song::durationInSeconds)
-                .average()
-                .orElse(0);
-    }
-
-    /**
      * Returns a list of songs that are longer than the specified duration.
      *
      * @param durationInSeconds the duration in seconds to compare the song lengths against
@@ -36,5 +23,18 @@ public record Album(String title, Genre genre, List<Song> songs) {
         return songs.stream()
                 .filter(song -> song.isLongerThan(durationInSeconds))
                 .toList();
+    }
+
+    /**
+     * Calculates the average duration of the songs on the album.
+     *
+     * @return the average duration of the songs in seconds. If there are no songs, returns 0.
+     */
+    @StudentImplementationRequired
+    public double getAverageDuration() {
+        return songs.stream()
+            .mapToInt(Song::durationInSeconds)
+            .average()
+            .orElse(0);
     }
 }
