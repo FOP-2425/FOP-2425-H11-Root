@@ -10,7 +10,18 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Represents a music streaming service with a list of artists and a list of users.
+ *
+ * @param artists the list of artists
+ * @param users   the list of users
+ */
 public record MusicStreaming(List<Artist> artists, List<User> users) {
+    /**
+     * Retrieves all the songs from all the artists on the platform.
+     *
+     * @return a list of all songs available on the platform
+     */
     @StudentImplementationRequired
     public List<Song> getAllSongs() {
         return artists.stream()
@@ -18,11 +29,21 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .toList();
     }
 
+    /**
+     * Generates a stream of random songs from the platform.
+     *
+     * @return a stream of random songs
+     */
     @StudentImplementationRequired
     public Stream<Song> generateRandomPlaylist() {
         return Stream.generate(this::getRandomSong);
     }
 
+    /**
+     * Retrieves a random song from the platform's song list.
+     *
+     * @return a random song, or null if there are no songs available
+     */
     @DoNotTouch
     public Song getRandomSong() {
         List<Song> allSongs = getAllSongs();
@@ -32,6 +53,12 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
         return allSongs.get((int) (Math.random() * allSongs.size()));
     }
 
+    /**
+     * Retrieves a list of songs that are longer than the specified duration.
+     *
+     * @param durationInSeconds the duration in seconds to compare the song lengths against
+     * @return a list of songs that are longer than the specified duration
+     */
     @StudentImplementationRequired
     public List<Song> getSongsLongerThan(int durationInSeconds) {
         return getAllSongs().stream()
@@ -39,6 +66,11 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .toList();
     }
 
+    /**
+     * Retrieves all unique genres available on the platform.
+     *
+     * @return a list of all unique genres available on the platform
+     */
     @StudentImplementationRequired
     public List<Genre> getAllGenres() {
         return artists.stream()
@@ -47,6 +79,11 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .toList();
     }
 
+    /**
+     * Groups all albums by their genre.
+     *
+     * @return a map where the key is the genre and the value is a list of albums of that genre
+     */
     @StudentImplementationRequired
     public Map<Genre, List<Album>> getAlbumsByGenre() {
         return artists.stream()
@@ -57,6 +94,12 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             ));
     }
 
+    /**
+     * Calculates the global play counts for all songs by summing the play counts from all users.
+     *
+     * @return a list of entries where each entry is a song and its total play count, sorted by play count in descending order.
+     * If two songs have the same play count, the entries are ordered alphabetically by the song name.
+     */
     @StudentImplementationRequired
     public List<Map.Entry<Song, Long>> getGlobalPlayCounts() {
         return users.stream()
@@ -73,6 +116,11 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .toList();
     }
 
+    /**
+     * Retrieves a list of the top played songs formatted as strings.
+     *
+     * @return a list of strings representing the top 5 most played songs and their play counts in the format "[title] ([count] plays)"
+     */
     @StudentImplementationRequired
     public List<String> getTopPlayedSongsList() {
         return getGlobalPlayCounts().stream()
@@ -81,18 +129,26 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .toList();
     }
 
+    /**
+     * Retrieves the total playtime of an artist's songs based on global play counts.
+     *
+     * @param artist the artist whose playtime is to be calculated
+     * @return the total playtime of the artist's songs in seconds
+     */
     @StudentImplementationRequired
     public long getArtistPlaytime(Artist artist) {
         // Alternative 1:
-//        List<Map.Entry<Song, Long>> globalPlayCounts = getGlobalPlayCounts();
-//
-//        return artist.getAllSongs().stream()
-//            .mapToLong(song -> globalPlayCounts.stream()
-//                .filter(entry -> entry.getKey().equals(song))
-//                .mapToLong(Map.Entry::getValue)
-//                .sum() * song.durationInSeconds()
-//            )
-//            .sum();
+        /*
+        List<Map.Entry<Song, Long>> globalPlayCounts = getGlobalPlayCounts();
+
+        return artist.getAllSongs().stream()
+            .mapToLong(song -> globalPlayCounts.stream()
+                .filter(entry -> entry.getKey().equals(song))
+                .mapToLong(Map.Entry::getValue)
+                .sum() * song.durationInSeconds()
+            )
+            .sum();
+        */
 
         // Alternative 2:
         Map<Song, Long> globalPlayCounts = getGlobalPlayCounts()
@@ -104,6 +160,11 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .sum();
     }
 
+    /**
+     * Retrieves the total playtimes for all artists.
+     *
+     * @return a map where the key is the artist and the value is their total playtime in seconds
+     */
     @StudentImplementationRequired
     public Map<Artist, Long> getArtistPlaytimes() {
         return artists.stream()
@@ -113,6 +174,11 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             ));
     }
 
+    /**
+     * Retrieves the most played artist based on the total playtime of their songs.
+     *
+     * @return the most played artist, or null if there are no artists
+     */
     @StudentImplementationRequired
     public Artist getMostPlayedArtist() {
         return getArtistPlaytimes().entrySet().stream()
@@ -121,6 +187,12 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .orElse(null);
     }
 
+    /**
+     * Searches for songs that match the given predicate.
+     *
+     * @param predicate the predicate to filter songs
+     * @return a list of songs that match the predicate
+     */
     @StudentImplementationRequired
     public List<Song> searchSongs(Predicate<? super Song> predicate) {
         return getAllSongs().stream()
@@ -128,6 +200,11 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
             .toList();
     }
 
+    /**
+     * Adjusts the monthly subscription price for all users by a given percentage.
+     *
+     * @param percentage the percentage to adjust the price by (e.g., 0.10 for a 10% increase)
+     */
     @StudentImplementationRequired
     public void adjustPrice(double percentage) {
         users.forEach(user -> user.setPricePerMonth(
