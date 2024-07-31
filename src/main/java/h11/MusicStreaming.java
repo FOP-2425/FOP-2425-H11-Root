@@ -38,7 +38,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
     @StudentImplementationRequired
     public List<Genre> getAllGenres() {
         return artists.stream()
-            .flatMap(artist -> artist.getGenres().stream())
+            .flatMap(artist -> artist.getAllGenres().stream())
             .distinct()
             .toList();
     }

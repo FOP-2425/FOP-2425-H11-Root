@@ -25,12 +25,12 @@ public class ArtistsTests {
     }
 
     @Test
-    public void testGetGenres() {
+    public void testGetAllGenres() {
         Album album1 = new Album("Album 1", Genre.ROCK, List.of());
         Album album2 = new Album("Album 2", Genre.POP, List.of());
         Album album3 = new Album("Album 3", Genre.ROCK, List.of());
         Artist artist = new Artist("Artist", List.of(album1, album2, album3));
 
-        assertEquals(List.of(Genre.ROCK, Genre.POP), artist.getGenres());
+        assertEquals(List.of(Genre.ROCK, Genre.POP), artist.getAllGenres());
     }
 }

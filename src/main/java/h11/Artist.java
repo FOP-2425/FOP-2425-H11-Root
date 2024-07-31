@@ -13,7 +13,7 @@ public record Artist(String name, List<Album> albums) {
     }
 
     @StudentImplementationRequired
-    public List<Genre> getGenres() {
+    public List<Genre> getAllGenres() {
         return albums.stream()
                 .map(Album::genre)
                 .distinct()
