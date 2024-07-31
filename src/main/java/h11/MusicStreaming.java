@@ -127,7 +127,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
     @StudentImplementationRequired
     public void adjustPrice(double percentage) {
         users.forEach(user -> user.setPricePerMonth(
-            user.getPricePerMonth() * (1 + percentage / 100)
+            user.getPricePerMonth() * (1 + percentage)
         ));
     }
 }
