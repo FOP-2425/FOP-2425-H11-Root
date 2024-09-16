@@ -39,6 +39,7 @@ public class User {
     public String getUsername() {
         return username;
     }
+
     /**
      * Retrieves the monthly subscription price for the user.
      *
@@ -48,6 +49,7 @@ public class User {
     public double getPricePerMonth() {
         return pricePerMonth;
     }
+
     /**
      * Retrieves the list of songs played by the user.
      *
@@ -76,9 +78,9 @@ public class User {
     @StudentImplementationRequired
     public List<Song> getPlayedSongs() {
         return playingHistory.stream()
-                .map(PlayedSong::song)
-                .distinct()
-                .toList();
+            .map(PlayedSong::song)
+            .distinct()
+            .toList();
     }
 
     /**
@@ -123,8 +125,8 @@ public class User {
     @StudentImplementationRequired
     public List<String> getTopPlayedSongsList() {
         return getPlayCounts().stream()
-                .limit(3)
-                .map(entry -> String.format("%s (%d plays)", entry.getKey().title(), entry.getValue()))
-                .toList();
+            .limit(3)
+            .map(entry -> String.format("%s (%d plays)", entry.getKey().title(), entry.getValue()))
+            .toList();
     }
 }

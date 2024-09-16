@@ -19,8 +19,8 @@ public record Artist(String name, List<Album> albums) {
     @StudentImplementationRequired
     public List<Song> getAllSongs() {
         return albums.stream()
-                .flatMap(album -> album.songs().stream())
-                .toList();
+            .flatMap(album -> album.songs().stream())
+            .toList();
     }
 
     /**
@@ -31,8 +31,8 @@ public record Artist(String name, List<Album> albums) {
     @StudentImplementationRequired
     public List<Genre> getAllGenres() {
         return albums.stream()
-                .map(Album::genre)
-                .distinct()
-                .toList();
+            .map(Album::genre)
+            .distinct()
+            .toList();
     }
 }

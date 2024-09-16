@@ -21,8 +21,8 @@ public record Album(String title, Genre genre, List<Song> songs) {
     @StudentImplementationRequired
     public List<Song> getSongsLongerThan(int durationInSeconds) {
         return songs.stream()
-                .filter(song -> song.isLongerThan(durationInSeconds))
-                .toList();
+            .filter(song -> song.isLongerThan(durationInSeconds))
+            .toList();
     }
 
     /**

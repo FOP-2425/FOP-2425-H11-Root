@@ -11,9 +11,9 @@ public class AlbumTests {
     @Test
     public void testGetAverageDuration() {
         List<Song> songs = List.of(
-                new Song("Song 1", 100),
-                new Song("Song 2", 200),
-                new Song("Song 3", 300)
+            new Song("Song 1", 100),
+            new Song("Song 2", 200),
+            new Song("Song 3", 300)
         );
         Album album = new Album("Album", Genre.ROCK, songs);
 
@@ -26,9 +26,9 @@ public class AlbumTests {
     @Test
     public void testGetSongsLongerThan() {
         List<Song> songs = List.of(
-                new Song("Song 1", 100),
-                new Song("Song 2", 200),
-                new Song("Song 3", 300)
+            new Song("Song 1", 100),
+            new Song("Song 2", 200),
+            new Song("Song 3", 300)
         );
         Album album = new Album("Album", Genre.ROCK, songs);
 
