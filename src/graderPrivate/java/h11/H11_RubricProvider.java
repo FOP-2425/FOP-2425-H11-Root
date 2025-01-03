@@ -6,6 +6,7 @@ import static org.tudalgo.algoutils.tutor.general.jagr.RubricUtils.criterion;
 
 public class H11_RubricProvider implements RubricProvider {
 
+    // Public test
     private static final Criterion H11_1_1 = Criterion.builder()
         .shortDescription("H11.1.1 | Lieder länger als ...")
         .maxPoints(1)
@@ -23,6 +24,7 @@ public class H11_RubricProvider implements RubricProvider {
         )
         .build();
 
+    // Public test
     private static final Criterion H11_1_2 = Criterion.builder()
         .shortDescription("H11.1.2 | Durchschnittliche Spieldauer eines Albums")
         .maxPoints(2)
@@ -45,6 +47,7 @@ public class H11_RubricProvider implements RubricProvider {
         )
         .build();
 
+    // Public test
     private static final Criterion H11_2_1 = Criterion.builder()
         .shortDescription("H11.2.1 |  Lieder eines Künstlers")
         .maxPoints(1)
@@ -59,6 +62,7 @@ public class H11_RubricProvider implements RubricProvider {
         )
         .build();
 
+    // Public test
     private static final Criterion H11_2_2 = Criterion.builder()
         .shortDescription("H11.2.2 | Alle Genres eines Künstlers")
         .maxPoints(1)
@@ -84,6 +88,7 @@ public class H11_RubricProvider implements RubricProvider {
         )
         .build();
 
+    // Public test
     public static final Criterion H11_3_1 = Criterion.builder()
         .shortDescription("H11.3.1 | Abgespielte Lieder")
         .maxPoints(1)
@@ -105,7 +110,7 @@ public class H11_RubricProvider implements RubricProvider {
         .shortDescription("H11.3.2 | Wie oft wurde ein Lied abgespielt?")
         .maxPoints(3)
         .addChildCriteria(
-            criterion(
+            criterion( // Public test
                 "Die Methode getPlayCounts() von User gibt eine Liste aller abgespielten Lieder des Benutzers zurück, zusammen mit der Anzahl der Wiedergaben.",
                 2
             ),
@@ -180,8 +185,9 @@ public class H11_RubricProvider implements RubricProvider {
         )
         .build();
 
+    // Public test
     public static final Criterion H11_4_2 = Criterion.builder()
-        .shortDescription("H11.4.2 | Alle Künstler")
+        .shortDescription("H11.4.2 | Eine neue zufällige Playlist")
         .maxPoints(1)
         .addChildCriteria(
             criterion(
@@ -269,7 +275,7 @@ public class H11_RubricProvider implements RubricProvider {
         .shortDescription("H11.4.7 | Spielzeit eines Künstlers")
         .maxPoints(4)
         .addChildCriteria(
-            criterion(
+            criterion( // Public test
                 "Die Methode getArtistPlayTime(Artist artist) von MusicStreaming gibt die Gesamtspielzeit in Sekunden aller Lieder des Künstlers zurück.",
                 3
             ),
@@ -288,7 +294,7 @@ public class H11_RubricProvider implements RubricProvider {
         .shortDescription("H11.4.8 | Welcher Künstler wurde am meisten gehört?")
         .maxPoints(2)
         .addChildCriteria(
-            criterion(
+            criterion( // Public test
                 "Die Methode getMostPlayedArtist() von MusicStreaming gibt den Künstler zurück, dessen Gesamtspielzeit am größten ist."
             ),
             criterion(
@@ -301,6 +307,7 @@ public class H11_RubricProvider implements RubricProvider {
         )
         .build();
 
+    // Public test
     public static final Criterion H11_4_9 = Criterion.builder()
         .shortDescription("H11.4.9 | Suchen von Liedern")
         .maxPoints(2)
@@ -320,7 +327,7 @@ public class H11_RubricProvider implements RubricProvider {
         .shortDescription("H11.4.10 | Preiserhöhung")
         .maxPoints(2)
         .addChildCriteria(
-            criterion(
+            criterion( // Public test
                 "Die Methode adjustPrice(double percentage) von MusicStreaming erhöht oder senkt den Preis für alle Benutzer bei einem postiven bzw. negativen Prozentsatz."
             ),
             criterion(
