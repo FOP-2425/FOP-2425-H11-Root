@@ -1,0 +1,117 @@
+[ {
+  "invoked" : 1,
+  "entryPoint" : "h11.MusicStreaming#getMostPlayedArtist()",
+  "arguments" : [ ],
+  "calls" : [ ],
+  "objects" : [ {
+    "type" : "h11.MusicStreaming",
+    "fields" : [ {
+      "name" : "artists",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 0
+    }, {
+      "name" : "users",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 0
+    } ],
+    "id" : 1
+  } ],
+  "expected" : {
+    "type" : "null"
+  }
+}, {
+  "invoked" : 4,
+  "entryPoint" : "h11.MusicStreaming#getMostPlayedArtist()",
+  "arguments" : [ ],
+  "calls" : [ ],
+  "objects" : [ {
+    "type" : "h11.MusicStreaming",
+    "fields" : [ {
+      "name" : "artists",
+      "type" : "java.util.ArrayList",
+      "value" : [ {
+        "type" : "h11.Artist",
+        "fields" : [ {
+          "name" : "name",
+          "type" : "java.lang.String",
+          "value" : "",
+          "id" : 0
+        }, {
+          "name" : "albums",
+          "type" : "java.util.ArrayList",
+          "value" : [ ],
+          "id" : 1
+        } ],
+        "id" : 2
+      } ],
+      "id" : 3
+    }, {
+      "name" : "users",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 1
+    } ],
+    "id" : 4
+  } ],
+  "expected" : {
+    "type" : "null"
+  }
+}, {
+  "invoked" : 7,
+  "entryPoint" : "h11.MusicStreaming#getMostPlayedArtist()",
+  "arguments" : [ ],
+  "calls" : [ ],
+  "objects" : [ {
+    "type" : "h11.MusicStreaming",
+    "fields" : [ {
+      "name" : "artists",
+      "type" : "java.util.ArrayList",
+      "value" : [ {
+        "type" : "h11.Artist",
+        "fields" : [ {
+          "name" : "name",
+          "type" : "java.lang.String",
+          "value" : "",
+          "id" : 0
+        }, {
+          "name" : "albums",
+          "type" : "java.util.ArrayList",
+          "value" : [ {
+            "type" : "h11.Album",
+            "fields" : [ {
+              "name" : "title",
+              "type" : "java.lang.String",
+              "value" : "",
+              "id" : 0
+            }, {
+              "name" : "genre",
+              "type" : "h11.Genre",
+              "value" : "ROCK",
+              "id" : 1
+            }, {
+              "name" : "songs",
+              "type" : "java.util.ArrayList",
+              "value" : [ ],
+              "id" : 2
+            } ],
+            "id" : 3
+          } ],
+          "id" : 4
+        } ],
+        "id" : 5
+      } ],
+      "id" : 6
+    }, {
+      "name" : "users",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 2
+    } ],
+    "id" : 7
+  } ],
+  "expected" : {
+    "type" : "null"
+  }
+} ]
