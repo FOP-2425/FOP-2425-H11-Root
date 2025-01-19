@@ -1,0 +1,517 @@
+[ {
+  "invoked" : 18,
+  "entryPoint" : "h11.Album#getAverageDuration()",
+  "arguments" : [ ],
+  "calls" : [ {
+    "id" : 16,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 15,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 13,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 12,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 10,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 9,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 7,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 6,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 4,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 3,
+        "parameter" : [ ]
+      } ]
+    } ]
+  } ],
+  "objects" : [ {
+    "type" : "h11.Album",
+    "fields" : [ {
+      "name" : "title",
+      "type" : "java.lang.String",
+      "value" : "Album 4",
+      "id" : 0
+    }, {
+      "name" : "genre",
+      "type" : "h11.Genre",
+      "value" : "OTHER",
+      "id" : 1
+    }, {
+      "name" : "songs",
+      "type" : "java.util.ArrayList",
+      "value" : [ {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 1",
+          "id" : 2
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "100",
+          "id" : 3
+        } ],
+        "id" : 4
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 2",
+          "id" : 5
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "200",
+          "id" : 6
+        } ],
+        "id" : 7
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 3",
+          "id" : 8
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "300",
+          "id" : 9
+        } ],
+        "id" : 10
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 4",
+          "id" : 11
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "400",
+          "id" : 12
+        } ],
+        "id" : 13
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 5",
+          "id" : 14
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "0",
+          "id" : 15
+        } ],
+        "id" : 16
+      } ],
+      "id" : 17
+    } ],
+    "id" : 18
+  } ],
+  "expected" : {
+    "type" : "java.lang.Double",
+    "value" : "200.0"
+  }
+}, {
+  "invoked" : 15,
+  "entryPoint" : "h11.Album#getAverageDuration()",
+  "arguments" : [ ],
+  "calls" : [ {
+    "id" : 2,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 1,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 5,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 4,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 8,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 7,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 13,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 12,
+        "parameter" : [ ]
+      } ]
+    } ]
+  } ],
+  "objects" : [ {
+    "type" : "h11.Album",
+    "fields" : [ {
+      "name" : "title",
+      "type" : "java.lang.String",
+      "value" : "Album 5",
+      "id" : 9
+    }, {
+      "name" : "genre",
+      "type" : "h11.Genre",
+      "value" : "KPOP",
+      "id" : 10
+    }, {
+      "name" : "songs",
+      "type" : "java.util.ArrayList",
+      "value" : [ {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 1",
+          "id" : 6
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "100",
+          "id" : 7
+        } ],
+        "id" : 8
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 2",
+          "id" : 11
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "200",
+          "id" : 12
+        } ],
+        "id" : 13
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 3",
+          "id" : 3
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "300",
+          "id" : 4
+        } ],
+        "id" : 5
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 4",
+          "id" : 0
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "400",
+          "id" : 1
+        } ],
+        "id" : 2
+      } ],
+      "id" : 14
+    } ],
+    "id" : 15
+  } ],
+  "expected" : {
+    "type" : "java.lang.Double",
+    "value" : "250.0"
+  }
+}, {
+  "invoked" : 21,
+  "entryPoint" : "h11.Album#getAverageDuration()",
+  "arguments" : [ ],
+  "calls" : [ {
+    "id" : 2,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 1,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 5,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 4,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 8,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 7,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 11,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 10,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 19,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 18,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 16,
+    "methodCalls" : [ {
+      "methodName" : "durationInSeconds",
+      "invocations" : [ {
+        "return" : 15,
+        "parameter" : [ ]
+      } ]
+    } ]
+  } ],
+  "objects" : [ {
+    "type" : "h11.Album",
+    "fields" : [ {
+      "name" : "title",
+      "type" : "java.lang.String",
+      "value" : "Album 6",
+      "id" : 12
+    }, {
+      "name" : "genre",
+      "type" : "h11.Genre",
+      "value" : "ELECTRONIC",
+      "id" : 13
+    }, {
+      "name" : "songs",
+      "type" : "java.util.ArrayList",
+      "value" : [ {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 1",
+          "id" : 14
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "100",
+          "id" : 15
+        } ],
+        "id" : 16
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 2",
+          "id" : 0
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "200",
+          "id" : 1
+        } ],
+        "id" : 2
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 3",
+          "id" : 9
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "300",
+          "id" : 10
+        } ],
+        "id" : 11
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 4",
+          "id" : 17
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "400",
+          "id" : 18
+        } ],
+        "id" : 19
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 5",
+          "id" : 6
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "0",
+          "id" : 7
+        } ],
+        "id" : 8
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 6",
+          "id" : 3
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "500",
+          "id" : 4
+        } ],
+        "id" : 5
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 1",
+          "id" : 14
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "100",
+          "id" : 15
+        } ],
+        "id" : 16
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 2",
+          "id" : 0
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "200",
+          "id" : 1
+        } ],
+        "id" : 2
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 3",
+          "id" : 9
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "300",
+          "id" : 10
+        } ],
+        "id" : 11
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 4",
+          "id" : 17
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "400",
+          "id" : 18
+        } ],
+        "id" : 19
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 5",
+          "id" : 6
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "0",
+          "id" : 7
+        } ],
+        "id" : 8
+      }, {
+        "type" : "h11.Song",
+        "fields" : [ {
+          "name" : "title",
+          "type" : "java.lang.String",
+          "value" : "Song 6",
+          "id" : 3
+        }, {
+          "name" : "durationInSeconds",
+          "type" : "java.lang.Integer",
+          "value" : "500",
+          "id" : 4
+        } ],
+        "id" : 5
+      } ],
+      "id" : 20
+    } ],
+    "id" : 21
+  } ],
+  "expected" : {
+    "type" : "java.lang.Double",
+    "value" : "250.0"
+  }
+} ]

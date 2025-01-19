@@ -1,0 +1,30 @@
+[ {
+  "invoked" : 3,
+  "entryPoint" : "h11.Album#getAverageDuration()",
+  "arguments" : [ ],
+  "calls" : [ ],
+  "objects" : [ {
+    "type" : "h11.Album",
+    "fields" : [ {
+      "name" : "title",
+      "type" : "java.lang.String",
+      "value" : "Album 3",
+      "id" : 0
+    }, {
+      "name" : "genre",
+      "type" : "h11.Genre",
+      "value" : "KPOP",
+      "id" : 1
+    }, {
+      "name" : "songs",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 2
+    } ],
+    "id" : 3
+  } ],
+  "expected" : {
+    "type" : "java.lang.Double",
+    "value" : "0.0"
+  }
+} ]
