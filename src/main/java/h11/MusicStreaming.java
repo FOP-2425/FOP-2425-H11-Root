@@ -137,8 +137,6 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
      */
     @StudentImplementationRequired
     public long getArtistPlaytime(Artist artist) {
-        // Alternative 1:
-        /*
         List<Map.Entry<Song, Long>> globalPlayCounts = getGlobalPlayCounts();
 
         return artist.getAllSongs().stream()
@@ -147,16 +145,6 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
                 .mapToLong(Map.Entry::getValue)
                 .sum() * song.durationInSeconds()
             )
-            .sum();
-        */
-
-        // Alternative 2:
-        Map<Song, Long> globalPlayCounts = getGlobalPlayCounts()
-            .stream()
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        return artist.getAllSongs().stream()
-            .mapToLong(song -> globalPlayCounts.getOrDefault(song, 0L) * song.durationInSeconds())
             .sum();
     }
 
@@ -183,6 +171,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
     public Artist getMostPlayedArtist() {
         return getArtistPlaytimes().entrySet().stream()
             .max(Map.Entry.comparingByValue())
+            .filter(entry -> entry.getValue() > 0) // Ensure playtime is greater than 0
             .map(Map.Entry::getKey)
             .orElse(null);
     }
