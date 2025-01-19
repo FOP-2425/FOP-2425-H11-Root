@@ -6,6 +6,7 @@ import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -28,6 +29,30 @@ public class User {
         this.username = username;
         this.pricePerMonth = pricePerMonth;
         this.playingHistory = playingHistory;
+    }
+
+    @Override
+    @DoNotTouch
+    public String toString() {
+        return "User{" +
+            "username='" + username + '\'' +
+            ", pricePerMonth=" + pricePerMonth +
+            ", playingHistory=" + playingHistory +
+            '}';
+    }
+
+    @Override
+    @DoNotTouch
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return Double.compare(pricePerMonth, user.pricePerMonth) == 0 && Objects.equals(username, user.username) && Objects.equals(playingHistory, user.playingHistory);
+    }
+
+    @Override
+    @DoNotTouch
+    public int hashCode() {
+        return Objects.hash(username, pricePerMonth, playingHistory);
     }
 
     /**
