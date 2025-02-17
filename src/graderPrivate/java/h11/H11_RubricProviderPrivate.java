@@ -14,18 +14,20 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion(
-                "Die Methode isLongerThan(int durationInSeconds) von Song gibt true zurück, wenn die Dauer des Songs länger als durationInSeconds ist, sonst false.",
-                JUnitTestRef.ofMethod(() -> SongTest.class.getDeclaredMethod("testIsLongerThan", ObjectNode.class))
+                "Die Methode isLongerThan(int durationInSeconds) von Song gibt true zurück, wenn die Dauer des Songs länger als"
+                    + " durationInSeconds ist, sonst false.",
+                JUnitTestRef.ofMethod(() -> SongTestP.class.getDeclaredMethod("testIsLongerThan", ObjectNode.class))
             ),
             criterion(
-                "Die Methode getSongsLongerThan(int durationInSeconds) von Album gibt alle Songs des Albums zurück, die länger als durationInSeconds sind.",
-                JUnitTestRef.ofMethod(() -> AlbumTest.class.getDeclaredMethod("testGetSongsLongerThan", ObjectNode.class))
+                "Die Methode getSongsLongerThan(int durationInSeconds) von Album gibt alle Songs des Albums zurück, die länger "
+                    + "als durationInSeconds sind.",
+                JUnitTestRef.ofMethod(() -> AlbumTestP.class.getDeclaredMethod("testGetSongsLongerThan", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
                 JUnitTestRef.and(
-                    JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testSong_isLongerThan_va")),
-                    JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testAlbum_getSongsLongerThan_va"))
+                    JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testSong_isLongerThan_va")),
+                    JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testAlbum_getSongsLongerThan_va"))
                 ),
                 -1
             )
@@ -40,15 +42,15 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getAverageDuration() von Album gibt die durchschnittliche Dauer aller Songs des Albums zurück.",
-                JUnitTestRef.ofMethod(() -> AlbumTest.class.getDeclaredMethod("testGetAverageDuration_full", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> AlbumTestP.class.getDeclaredMethod("testGetAverageDuration_full", ObjectNode.class))
             ),
             criterion(
                 "Die Methode getAverageDuration() von Album gibt für ein Album ohne Lieder 0 zurück.",
-                JUnitTestRef.ofMethod(() -> AlbumTest.class.getDeclaredMethod("testGetAverageDuration_empty", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> AlbumTestP.class.getDeclaredMethod("testGetAverageDuration_empty", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testAlbum_getAverageDuration_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testAlbum_getAverageDuration_va")),
                 -2
             )
         )
@@ -70,11 +72,11 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getAllSongs() von Artist gibt eine Liste aller Songs des Künstlers zurück.",
-                JUnitTestRef.ofMethod(() -> ArtistTest.class.getDeclaredMethod("testGetAllSongs", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> ArtistTestP.class.getDeclaredMethod("testGetAllSongs", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testArtist_getAllSongs_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testArtist_getAllSongs_va")),
                 -1
             )
         )
@@ -88,15 +90,15 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getAllGenres() von Artist gibt eine Liste aller Genres der Alben des Künstlers zurück.",
-                JUnitTestRef.ofMethod(() -> ArtistTest.class.getDeclaredMethod("testGetAllGenres_general", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> ArtistTestP.class.getDeclaredMethod("testGetAllGenres_general", ObjectNode.class))
             ),
             criterion(
                 "Jedes Genre kommt nur einmal in der Liste vor.",
-                JUnitTestRef.ofMethod(() -> ArtistTest.class.getDeclaredMethod("testGetAllGenres_unique", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> ArtistTestP.class.getDeclaredMethod("testGetAllGenres_unique", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testArtist_getAllGenres_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testArtist_getAllGenres_va")),
                 -1
             )
         )
@@ -118,15 +120,15 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getPlayedSongs() von User gibt eine Liste aller abgespielten Lieder des Benutzers zurück.",
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetPlayedSongs_general", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod("testGetPlayedSongs_general", ObjectNode.class))
             ),
             criterion(
                 "Jedes Lied kommt nur einmal in der Liste vor.",
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetPlayedSongs_unique", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod("testGetPlayedSongs_unique", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testUser_getPlayedSongs_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testUser_getPlayedSongs_va")),
                 -1
             )
         )
@@ -138,17 +140,19 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion( // Public test
-                "Die Methode getPlayCounts() von User gibt eine Liste aller abgespielten Lieder des Benutzers zurück, zusammen mit der Anzahl der Wiedergaben.",
+                "Die Methode getPlayCounts() von User gibt eine Liste aller abgespielten Lieder des Benutzers zurück, zusammen "
+                    + "mit der Anzahl der Wiedergaben.",
                 2,
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetPlayCounts_return", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod("testGetPlayCounts_return", ObjectNode.class))
             ),
             criterion(
-                "Die Liste ist absteigend nach der Anzahl der Wiedergaben sortiert. Bei gleicher Anzahl von Wiedergaben ist die Reihenfolge alphabetisch nach dem Titel des Liedes sortiert.",
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetPlayCounts_order", ObjectNode.class))
+                "Die Liste ist absteigend nach der Anzahl der Wiedergaben sortiert. Bei gleicher Anzahl von Wiedergaben ist die"
+                    + " Reihenfolge alphabetisch nach dem Titel des Liedes sortiert.",
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod("testGetPlayCounts_order", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testUser_getPlayCounts_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testUser_getPlayCounts_va")),
                 -3
             )
         )
@@ -161,15 +165,15 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getFavoriteSong() von User gibt das am häufigsten abgespielte Lied des Benutzers zurück.",
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetFavoriteSong_full", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod("testGetFavoriteSong_full", ObjectNode.class))
             ),
             criterion(
                 "Hat der Benutzer noch kein Lied abgespielt, wird null zurückgegeben.",
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetFavoriteSong_empty", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod("testGetFavoriteSong_empty", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testUser_getFavoriteSong_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testUser_getFavoriteSong_va")),
                 -1
             )
         )
@@ -182,15 +186,18 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getTopPlayedSongsList() von User gibt eine Liste von maximal drei Liedern zurück.",
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetTopPlayedSongsList_size", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod("testGetTopPlayedSongsList_size", ObjectNode.class))
             ),
             criterion(
                 "Das Format der Ausgabe ist \"<Titel> (<Anzahl> plays)\" pro Song.",
-                JUnitTestRef.ofMethod(() -> UserTest.class.getDeclaredMethod("testGetTopPlayedSongsList_formatting", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> UserTestP.class.getDeclaredMethod(
+                    "testGetTopPlayedSongsList_formatting",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testUser_getTopPlayedSongsList_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testUser_getTopPlayedSongsList_va")),
                 -2
             )
         )
@@ -213,15 +220,21 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getAllSongs() von MusicStreaming gibt eine Liste aller Lieder zurück.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetAllSongs_general", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetAllSongs_general",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Jedes Lied kommt nur einmal in der Liste vor.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetAllSongs_unique", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetAllSongs_unique",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getAllSongs_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getAllSongs_va")),
                 -1
             )
         )
@@ -234,12 +247,16 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion(
-                "Die Methode generateRandomPlaylist() von MusicStreaming erstellt einen unendlichen Stream von zufälligen Liedern.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGenerateRandomPlaylist", ObjectNode.class))
+                "Die Methode generateRandomPlaylist() von MusicStreaming erstellt einen unendlichen Stream von zufälligen "
+                    + "Liedern.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGenerateRandomPlaylist",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_generateRandomPlaylist_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_generateRandomPlaylist_va")),
                 -1
             )
         )
@@ -251,12 +268,16 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion(
-                "Die Methode getSongsLongerThan(int durationInSeconds) von MusicStreaming gibt nur Lieder zurück, die länger als durationInSeconds sind.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetSongsLongerThan_general", ObjectNode.class))
+                "Die Methode getSongsLongerThan(int durationInSeconds) von MusicStreaming gibt nur Lieder zurück, die länger "
+                    + "als durationInSeconds sind.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetSongsLongerThan_general",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getSongsLongerThan_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getSongsLongerThan_va")),
                 -1
             )
         )
@@ -269,15 +290,21 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .addChildCriteria(
             criterion(
                 "Die Methode getAllGenres() von MusicStreaming gibt eine Liste von in Alben verwendeten Genres zurück.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetAllGenres_general", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetAllGenres_general",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Jedes Genre kommt nur einmal in der Liste vor.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetAllGenres_unique", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetAllGenres_unique",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getAllGenres_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getAllGenres_va")),
                 -1
             )
         )
@@ -289,13 +316,17 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion(
-                "Die Methode getAlbumsByGenre() von MusicStreaming gibt eine Map zurück, die jedes Genre auf eine Liste von Alben dieses Genres abbildet.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetAlbumsByGenre", ObjectNode.class)),
+                "Die Methode getAlbumsByGenre() von MusicStreaming gibt eine Map zurück, die jedes Genre auf eine Liste von "
+                    + "Alben dieses Genres abbildet.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetAlbumsByGenre",
+                    ObjectNode.class
+                )),
                 2
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getAlbumsByGenre_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getAlbumsByGenre_va")),
                 -2
             )
         )
@@ -307,23 +338,35 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion(
-                "Die Methode getGlobalPlayCounts() von MusicStreaming gibt eine Liste aller Lieder und ihrer Gesamtanzahl von Wiedergaben zurück.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetGlobalPlayCounts_general", ObjectNode.class)),
+                "Die Methode getGlobalPlayCounts() von MusicStreaming gibt eine Liste aller Lieder und ihrer Gesamtanzahl von "
+                    + "Wiedergaben zurück.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetGlobalPlayCounts_general",
+                    ObjectNode.class
+                )),
                 2
             ),
             criterion(
-                "Die Liste ist absteigend nach der Anzahl der Wiedergaben sortiert. Bei gleicher Anzahl von Wiedergaben ist die Reihenfolge alphabetisch nach dem Titel des Liedes sortiert.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetGlobalPlayCounts_order", ObjectNode.class))
+                "Die Liste ist absteigend nach der Anzahl der Wiedergaben sortiert. Bei gleicher Anzahl von Wiedergaben ist die"
+                    + " Reihenfolge alphabetisch nach dem Titel des Liedes sortiert.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetGlobalPlayCounts_order",
+                    ObjectNode.class
+                ))
             ),
             criterion(
-                "Die Methode getTopPlayedSongsList() von MusicStreaming gibt eine Liste von maximal fünf Liedern zurück. Das Format der Ausgabe ist \"<Titel> (<Anzahl> plays)\" pro Song.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetTopPlayedSongsList", ObjectNode.class))
+                "Die Methode getTopPlayedSongsList() von MusicStreaming gibt eine Liste von maximal fünf Liedern zurück. Das "
+                    + "Format der Ausgabe ist \"<Titel> (<Anzahl> plays)\" pro Song.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetTopPlayedSongsList",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
                 JUnitTestRef.and(
-                    JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getGlobalPlayCounts_va")),
-                    JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getTopPlayedSongsList_va"))
+                    JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getGlobalPlayCounts_va")),
+                    JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getTopPlayedSongsList_va"))
                 ),
                 -4
             )
@@ -336,20 +379,28 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion( // Public test
-                "Die Methode getArtistPlayTime(Artist artist) von MusicStreaming gibt die Gesamtspielzeit in Sekunden aller Lieder des Künstlers zurück.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetArtistPlaytime", ObjectNode.class)),
+                "Die Methode getArtistPlayTime(Artist artist) von MusicStreaming gibt die Gesamtspielzeit in Sekunden aller "
+                    + "Lieder des Künstlers zurück.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetArtistPlaytime",
+                    ObjectNode.class
+                )),
                 3
             ),
             criterion(
-                "Die Methode getArtistPlayTimes() von MusicStreaming gibt eine Map zurück, die jeden Künstler auf die Gesamtspielzeit in Sekunden seiner Lieder abbildet.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetArtistPlaytimes", ObjectNode.class)),
+                "Die Methode getArtistPlayTimes() von MusicStreaming gibt eine Map zurück, die jeden Künstler auf die "
+                    + "Gesamtspielzeit in Sekunden seiner Lieder abbildet.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetArtistPlaytimes",
+                    ObjectNode.class
+                )),
                 1
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
                 JUnitTestRef.and(
-                    JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getArtistPlaytime_va")),
-                    JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getArtistPlaytimes_va"))
+                    JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getArtistPlaytime_va")),
+                    JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getArtistPlaytimes_va"))
                 ),
                 -4
             )
@@ -362,16 +413,23 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion( // Public test
-                "Die Methode getMostPlayedArtist() von MusicStreaming gibt den Künstler zurück, dessen Gesamtspielzeit am größten ist.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetMostPlayedArtist_full", ObjectNode.class))
+                "Die Methode getMostPlayedArtist() von MusicStreaming gibt den Künstler zurück, dessen Gesamtspielzeit am "
+                    + "größten ist.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetMostPlayedArtist_full",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Hat noch kein Künstler Lieder, wird null zurückgegeben.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testGetMostPlayedArtist_empty", ObjectNode.class))
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testGetMostPlayedArtist_empty",
+                    ObjectNode.class
+                ))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_getMostPlayedArtist_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_getMostPlayedArtist_va")),
                 -2
             )
         )
@@ -384,13 +442,14 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion(
-                "Die Methode searchSongs(Predicate<? super Song> predicate) von MusicStreaming gibt eine Liste von Liedern zurück, die das gegebene Predicate erfüllen.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testSearchSongs", ObjectNode.class)),
+                "Die Methode searchSongs(Predicate<? super Song> predicate) von MusicStreaming gibt eine Liste von Liedern "
+                    + "zurück, die das gegebene Predicate erfüllen.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod("testSearchSongs", ObjectNode.class)),
                 2
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_searchSongs_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_searchSongs_va")),
                 -2
             )
         )
@@ -402,16 +461,21 @@ public class H11_RubricProviderPrivate implements RubricProvider {
         .minPoints(0)
         .addChildCriteria(
             criterion( // Public test
-                "Die Methode adjustPrice(double percentage) von MusicStreaming erhöht oder senkt den Preis für alle Benutzer bei einem postiven bzw. negativen Prozentsatz.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testAdjustPrice_general", ObjectNode.class))
+                "Die Methode adjustPrice(double percentage) von MusicStreaming erhöht oder senkt den Preis für alle Benutzer "
+                    + "bei einem postiven bzw. negativen Prozentsatz.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod(
+                    "testAdjustPrice_general",
+                    ObjectNode.class
+                ))
             ),
             criterion(
-                "Die Methode adjustPrice(double percentage) von MusicStreaming erhält den Preis für alle Benutzer bei einem Prozentsatz von 0.",
-                JUnitTestRef.ofMethod(() -> MusicStreamingTest.class.getDeclaredMethod("testAdjustPrice_zero", ObjectNode.class))
+                "Die Methode adjustPrice(double percentage) von MusicStreaming erhält den Preis für alle Benutzer bei einem "
+                    + "Prozentsatz von 0.",
+                JUnitTestRef.ofMethod(() -> MusicStreamingTestP.class.getDeclaredMethod("testAdjustPrice_zero", ObjectNode.class))
             ),
             criterion(
                 "Verbindliche Anforderung nicht erfüllt",
-                JUnitTestRef.ofMethod(() -> VATest.class.getDeclaredMethod("testMusicStreaming_adjustPrice_va")),
+                JUnitTestRef.ofMethod(() -> VATestP.class.getDeclaredMethod("testMusicStreaming_adjustPrice_va")),
                 -2
             )
         )

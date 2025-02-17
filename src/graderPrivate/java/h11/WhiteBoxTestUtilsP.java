@@ -10,15 +10,14 @@ import spoon.reflect.visitor.filter.TypeFilter;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class WhiteBoxTestUtils {
+public class WhiteBoxTestUtilsP {
 
     /**
-     *
      * @param classesToSearch a list of all classes to check for the given CtElement
-     * @param toSearch the CtElement to Search
-     * @param bodyHolder the element to search the CtElement in
+     * @param toSearch        the CtElement to Search
+     * @param bodyHolder      the element to search the CtElement in
+     * @param <T>             the Type of element to find
      * @return a list containing all found elements
-     * @param <T> the Type of element to find
      */
     public static <T extends CtElement> Stream<T> getCtElements(final List<Class<?>> classesToSearch, final Class<T> toSearch,
                                                                 final CtBodyHolder bodyHolder) {
@@ -35,10 +34,12 @@ public class WhiteBoxTestUtils {
                 if (element instanceof final CtInvocation<?> call) {
                     final var calledMethod = call.getExecutable();
                     if (calledMethod.getDeclaringType() == null
-                        || !calledMethod.getDeclaringType().getQualifiedName().startsWith(ReflectionUtils.getExercisePrefix(classesToSearch.getFirst()))) {
+                        || !calledMethod.getDeclaringType()
+                        .getQualifiedName()
+                        .startsWith(ReflectionUtilsP.getExercisePrefix(classesToSearch.getFirst()))) {
                         return Stream.of();
                     }
-                    if (calledMethod.getDeclaringType().isEnum()){
+                    if (calledMethod.getDeclaringType().isEnum()) {
                         return Stream.of();
                     }
                     final var actualCalledMethod = calledMethod.getActualMethod();

@@ -12,20 +12,20 @@
       } ]
     } ]
   }, {
-    "id" : 14,
+    "id" : 11,
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 11,
+        "return" : 9,
         "parameter" : [ ]
       } ]
     } ]
   }, {
-    "id" : 19,
+    "id" : 14,
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 17,
+        "return" : 9,
         "parameter" : [ ]
       } ]
     } ]
@@ -34,16 +34,7 @@
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 17,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 21,
-    "methodCalls" : [ {
-      "methodName" : "song",
-      "invocations" : [ {
-        "return" : 2,
+        "return" : 21,
         "parameter" : [ ]
       } ]
     } ]
@@ -52,7 +43,16 @@
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 11,
+        "return" : 21,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 18,
+    "methodCalls" : [ {
+      "methodName" : "song",
+      "invocations" : [ {
+        "return" : 2,
         "parameter" : [ ]
       } ]
     } ]
@@ -63,12 +63,12 @@
       "name" : "username",
       "type" : "java.lang.String",
       "value" : "User 2",
-      "id" : 7
+      "id" : 15
     }, {
       "name" : "pricePerMonth",
       "type" : "java.lang.Double",
       "value" : "0.0",
-      "id" : 8
+      "id" : 16
     }, {
       "name" : "playingHistory",
       "type" : "java.util.ArrayList",
@@ -81,14 +81,47 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 1",
-            "id" : 9
+            "id" : 0
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "100",
-            "id" : 10
+            "id" : 1
           } ],
-          "id" : 11
+          "id" : 2
+        }, {
+          "name" : "playedAt",
+          "type" : "java.util.Date",
+          "fields" : [ {
+            "name" : "fastTime",
+            "type" : "java.lang.Long",
+            "value" : "0",
+            "id" : 12
+          }, {
+            "name" : "cdate",
+            "type" : "null",
+            "id" : 4
+          } ],
+          "id" : 17
+        } ],
+        "id" : 18
+      }, {
+        "type" : "h11.PlayedSong",
+        "fields" : [ {
+          "name" : "song",
+          "type" : "h11.Song",
+          "fields" : [ {
+            "name" : "title",
+            "type" : "java.lang.String",
+            "value" : "Song 2",
+            "id" : 7
+          }, {
+            "name" : "durationInSeconds",
+            "type" : "java.lang.Integer",
+            "value" : "200",
+            "id" : 8
+          } ],
+          "id" : 9
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -113,48 +146,15 @@
           "fields" : [ {
             "name" : "title",
             "type" : "java.lang.String",
-            "value" : "Song 2",
-            "id" : 15
-          }, {
-            "name" : "durationInSeconds",
-            "type" : "java.lang.Integer",
-            "value" : "200",
-            "id" : 16
-          } ],
-          "id" : 17
-        }, {
-          "name" : "playedAt",
-          "type" : "java.util.Date",
-          "fields" : [ {
-            "name" : "fastTime",
-            "type" : "java.lang.Long",
-            "value" : "0",
-            "id" : 12
-          }, {
-            "name" : "cdate",
-            "type" : "null",
-            "id" : 4
-          } ],
-          "id" : 18
-        } ],
-        "id" : 19
-      }, {
-        "type" : "h11.PlayedSong",
-        "fields" : [ {
-          "name" : "song",
-          "type" : "h11.Song",
-          "fields" : [ {
-            "name" : "title",
-            "type" : "java.lang.String",
             "value" : "Song 3",
-            "id" : 0
+            "id" : 19
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "300",
-            "id" : 1
+            "id" : 20
           } ],
-          "id" : 2
+          "id" : 21
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -163,39 +163,6 @@
             "type" : "java.lang.Long",
             "value" : "0",
             "id" : 12
-          }, {
-            "name" : "cdate",
-            "type" : "null",
-            "id" : 4
-          } ],
-          "id" : 20
-        } ],
-        "id" : 21
-      }, {
-        "type" : "h11.PlayedSong",
-        "fields" : [ {
-          "name" : "song",
-          "type" : "h11.Song",
-          "fields" : [ {
-            "name" : "title",
-            "type" : "java.lang.String",
-            "value" : "Song 1",
-            "id" : 9
-          }, {
-            "name" : "durationInSeconds",
-            "type" : "java.lang.Integer",
-            "value" : "100",
-            "id" : 10
-          } ],
-          "id" : 11
-        }, {
-          "name" : "playedAt",
-          "type" : "java.util.Date",
-          "fields" : [ {
-            "name" : "fastTime",
-            "type" : "java.lang.Long",
-            "value" : "1",
-            "id" : 3
           }, {
             "name" : "cdate",
             "type" : "null",
@@ -212,45 +179,12 @@
           "fields" : [ {
             "name" : "title",
             "type" : "java.lang.String",
-            "value" : "Song 2",
-            "id" : 15
-          }, {
-            "name" : "durationInSeconds",
-            "type" : "java.lang.Integer",
-            "value" : "200",
-            "id" : 16
-          } ],
-          "id" : 17
-        }, {
-          "name" : "playedAt",
-          "type" : "java.util.Date",
-          "fields" : [ {
-            "name" : "fastTime",
-            "type" : "java.lang.Long",
-            "value" : "1",
-            "id" : 3
-          }, {
-            "name" : "cdate",
-            "type" : "null",
-            "id" : 4
-          } ],
-          "id" : 24
-        } ],
-        "id" : 25
-      }, {
-        "type" : "h11.PlayedSong",
-        "fields" : [ {
-          "name" : "song",
-          "type" : "h11.Song",
-          "fields" : [ {
-            "name" : "title",
-            "type" : "java.lang.String",
-            "value" : "Song 3",
+            "value" : "Song 1",
             "id" : 0
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
-            "value" : "300",
+            "value" : "100",
             "id" : 1
           } ],
           "id" : 2
@@ -270,6 +204,72 @@
           "id" : 5
         } ],
         "id" : 6
+      }, {
+        "type" : "h11.PlayedSong",
+        "fields" : [ {
+          "name" : "song",
+          "type" : "h11.Song",
+          "fields" : [ {
+            "name" : "title",
+            "type" : "java.lang.String",
+            "value" : "Song 2",
+            "id" : 7
+          }, {
+            "name" : "durationInSeconds",
+            "type" : "java.lang.Integer",
+            "value" : "200",
+            "id" : 8
+          } ],
+          "id" : 9
+        }, {
+          "name" : "playedAt",
+          "type" : "java.util.Date",
+          "fields" : [ {
+            "name" : "fastTime",
+            "type" : "java.lang.Long",
+            "value" : "1",
+            "id" : 3
+          }, {
+            "name" : "cdate",
+            "type" : "null",
+            "id" : 4
+          } ],
+          "id" : 10
+        } ],
+        "id" : 11
+      }, {
+        "type" : "h11.PlayedSong",
+        "fields" : [ {
+          "name" : "song",
+          "type" : "h11.Song",
+          "fields" : [ {
+            "name" : "title",
+            "type" : "java.lang.String",
+            "value" : "Song 3",
+            "id" : 19
+          }, {
+            "name" : "durationInSeconds",
+            "type" : "java.lang.Integer",
+            "value" : "300",
+            "id" : 20
+          } ],
+          "id" : 21
+        }, {
+          "name" : "playedAt",
+          "type" : "java.util.Date",
+          "fields" : [ {
+            "name" : "fastTime",
+            "type" : "java.lang.Long",
+            "value" : "1",
+            "id" : 3
+          }, {
+            "name" : "cdate",
+            "type" : "null",
+            "id" : 4
+          } ],
+          "id" : 24
+        } ],
+        "id" : 25
       } ],
       "id" : 26
     } ],

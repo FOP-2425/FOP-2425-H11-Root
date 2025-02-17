@@ -39,6 +39,21 @@
   "entryPoint" : "h11.MusicStreaming#adjustPrice(double)",
   "arguments" : [ 0 ],
   "calls" : [ {
+    "id" : 4,
+    "methodCalls" : [ {
+      "methodName" : "getPricePerMonth",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    }, {
+      "methodName" : "setPricePerMonth",
+      "invocations" : [ {
+        "return" : 13,
+        "parameter" : [ 2 ]
+      } ]
+    } ]
+  }, {
     "id" : 7,
     "methodCalls" : [ {
       "methodName" : "getPricePerMonth",
@@ -51,21 +66,6 @@
       "invocations" : [ {
         "return" : 13,
         "parameter" : [ 6 ]
-      } ]
-    } ]
-  }, {
-    "id" : 4,
-    "methodCalls" : [ {
-      "methodName" : "getPricePerMonth",
-      "invocations" : [ {
-        "return" : 3,
-        "parameter" : [ ]
-      } ]
-    }, {
-      "methodName" : "setPricePerMonth",
-      "invocations" : [ {
-        "return" : 13,
-        "parameter" : [ 3 ]
       } ]
     } ]
   }, {
@@ -90,7 +90,7 @@
       "name" : "artists",
       "type" : "java.util.ArrayList",
       "value" : [ ],
-      "id" : 1
+      "id" : 3
     }, {
       "name" : "users",
       "type" : "java.util.ArrayList",
@@ -100,19 +100,19 @@
           "name" : "username",
           "type" : "java.lang.String",
           "value" : "Username 0",
-          "id" : 2
+          "id" : 8
         }, {
           "name" : "pricePerMonth",
           "type" : "java.lang.Double",
           "value" : "0.0",
-          "id" : 3
+          "id" : 9
         }, {
           "name" : "playingHistory",
           "type" : "java.util.ArrayList",
           "value" : [ ],
-          "id" : 1
+          "id" : 3
         } ],
-        "id" : 4
+        "id" : 10
       }, {
         "type" : "h11.User",
         "fields" : [ {
@@ -129,7 +129,7 @@
           "name" : "playingHistory",
           "type" : "java.util.ArrayList",
           "value" : [ ],
-          "id" : 1
+          "id" : 3
         } ],
         "id" : 7
       }, {
@@ -138,19 +138,19 @@
           "name" : "username",
           "type" : "java.lang.String",
           "value" : "Username 10",
-          "id" : 8
+          "id" : 1
         }, {
           "name" : "pricePerMonth",
           "type" : "java.lang.Double",
           "value" : "10.0",
-          "id" : 9
+          "id" : 2
         }, {
           "name" : "playingHistory",
           "type" : "java.util.ArrayList",
           "value" : [ ],
-          "id" : 1
+          "id" : 3
         } ],
-        "id" : 10
+        "id" : 4
       } ],
       "id" : 11
     } ],

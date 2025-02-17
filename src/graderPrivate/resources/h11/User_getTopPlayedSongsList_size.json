@@ -12,20 +12,11 @@
       } ]
     } ]
   }, {
-    "id" : 4,
+    "id" : 16,
     "methodCalls" : [ {
       "methodName" : "title",
       "invocations" : [ {
-        "return" : 2,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 18,
-    "methodCalls" : [ {
-      "methodName" : "song",
-      "invocations" : [ {
-        "return" : 16,
+        "return" : 14,
         "parameter" : [ ]
       } ]
     } ]
@@ -39,20 +30,11 @@
       } ]
     } ]
   }, {
-    "id" : 11,
+    "id" : 18,
     "methodCalls" : [ {
-      "methodName" : "title",
+      "methodName" : "song",
       "invocations" : [ {
-        "return" : 9,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 16,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 14,
+        "return" : 16,
         "parameter" : [ ]
       } ]
     } ]
@@ -62,6 +44,24 @@
       "methodName" : "song",
       "invocations" : [ {
         "return" : 11,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 11,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 9,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 4,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 2,
         "parameter" : [ ]
       } ]
     } ]
@@ -273,25 +273,7 @@
   "entryPoint" : "h11.User#getTopPlayedSongsList()",
   "arguments" : [ ],
   "calls" : [ {
-    "id" : 2,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 0,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 5,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 3,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 9,
+    "id" : 6,
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
@@ -300,20 +282,20 @@
       } ]
     } ]
   }, {
-    "id" : 12,
+    "id" : 11,
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 2,
+        "return" : 9,
         "parameter" : [ ]
       } ]
     } ]
   }, {
-    "id" : 14,
+    "id" : 17,
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 5,
+        "return" : 14,
         "parameter" : [ ]
       } ]
     } ]
@@ -322,16 +304,7 @@
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 17,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 17,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 15,
+        "return" : 14,
         "parameter" : [ ]
       } ]
     } ]
@@ -340,16 +313,7 @@
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 17,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 23,
-    "methodCalls" : [ {
-      "methodName" : "song",
-      "invocations" : [ {
-        "return" : 5,
+        "return" : 2,
         "parameter" : [ ]
       } ]
     } ]
@@ -362,6 +326,42 @@
         "parameter" : [ ]
       } ]
     } ]
+  }, {
+    "id" : 2,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 0,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 14,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 12,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 25,
+    "methodCalls" : [ {
+      "methodName" : "song",
+      "invocations" : [ {
+        "return" : 9,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 9,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 7,
+        "parameter" : [ ]
+      } ]
+    } ]
   } ],
   "objects" : [ {
     "type" : "h11.User",
@@ -369,12 +369,12 @@
       "name" : "username",
       "type" : "java.lang.String",
       "value" : "User 2",
-      "id" : 24
+      "id" : 22
     }, {
       "name" : "pricePerMonth",
       "type" : "java.lang.Double",
       "value" : "0.0",
-      "id" : 25
+      "id" : 23
     }, {
       "name" : "playingHistory",
       "type" : "java.util.ArrayList",
@@ -387,14 +387,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 1",
-            "id" : 15
+            "id" : 7
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "100",
-            "id" : 16
+            "id" : 8
           } ],
-          "id" : 17
+          "id" : 9
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -402,11 +402,44 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "0",
-            "id" : 10
+            "id" : 15
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 7
+            "id" : 4
+          } ],
+          "id" : 24
+        } ],
+        "id" : 25
+      }, {
+        "type" : "h11.PlayedSong",
+        "fields" : [ {
+          "name" : "song",
+          "type" : "h11.Song",
+          "fields" : [ {
+            "name" : "title",
+            "type" : "java.lang.String",
+            "value" : "Song 2",
+            "id" : 0
+          }, {
+            "name" : "durationInSeconds",
+            "type" : "java.lang.Integer",
+            "value" : "200",
+            "id" : 1
+          } ],
+          "id" : 2
+        }, {
+          "name" : "playedAt",
+          "type" : "java.util.Date",
+          "fields" : [ {
+            "name" : "fastTime",
+            "type" : "java.lang.Long",
+            "value" : "0",
+            "id" : 15
+          }, {
+            "name" : "cdate",
+            "type" : "null",
+            "id" : 4
           } ],
           "id" : 20
         } ],
@@ -419,48 +452,15 @@
           "fields" : [ {
             "name" : "title",
             "type" : "java.lang.String",
-            "value" : "Song 2",
-            "id" : 3
-          }, {
-            "name" : "durationInSeconds",
-            "type" : "java.lang.Integer",
-            "value" : "200",
-            "id" : 4
-          } ],
-          "id" : 5
-        }, {
-          "name" : "playedAt",
-          "type" : "java.util.Date",
-          "fields" : [ {
-            "name" : "fastTime",
-            "type" : "java.lang.Long",
-            "value" : "0",
-            "id" : 10
-          }, {
-            "name" : "cdate",
-            "type" : "null",
-            "id" : 7
-          } ],
-          "id" : 22
-        } ],
-        "id" : 23
-      }, {
-        "type" : "h11.PlayedSong",
-        "fields" : [ {
-          "name" : "song",
-          "type" : "h11.Song",
-          "fields" : [ {
-            "name" : "title",
-            "type" : "java.lang.String",
             "value" : "Song 3",
-            "id" : 0
+            "id" : 12
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "300",
-            "id" : 1
+            "id" : 13
           } ],
-          "id" : 2
+          "id" : 14
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -468,15 +468,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "0",
-            "id" : 10
+            "id" : 15
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 7
+            "id" : 4
           } ],
-          "id" : 11
+          "id" : 16
         } ],
-        "id" : 12
+        "id" : 17
       }, {
         "type" : "h11.PlayedSong",
         "fields" : [ {
@@ -486,14 +486,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 1",
-            "id" : 15
+            "id" : 7
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "100",
-            "id" : 16
+            "id" : 8
           } ],
-          "id" : 17
+          "id" : 9
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -501,15 +501,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 6
+            "id" : 3
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 7
+            "id" : 4
           } ],
-          "id" : 18
+          "id" : 10
         } ],
-        "id" : 19
+        "id" : 11
       }, {
         "type" : "h11.PlayedSong",
         "fields" : [ {
@@ -519,44 +519,11 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 2",
-            "id" : 3
-          }, {
-            "name" : "durationInSeconds",
-            "type" : "java.lang.Integer",
-            "value" : "200",
-            "id" : 4
-          } ],
-          "id" : 5
-        }, {
-          "name" : "playedAt",
-          "type" : "java.util.Date",
-          "fields" : [ {
-            "name" : "fastTime",
-            "type" : "java.lang.Long",
-            "value" : "1",
-            "id" : 6
-          }, {
-            "name" : "cdate",
-            "type" : "null",
-            "id" : 7
-          } ],
-          "id" : 13
-        } ],
-        "id" : 14
-      }, {
-        "type" : "h11.PlayedSong",
-        "fields" : [ {
-          "name" : "song",
-          "type" : "h11.Song",
-          "fields" : [ {
-            "name" : "title",
-            "type" : "java.lang.String",
-            "value" : "Song 3",
             "id" : 0
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
-            "value" : "300",
+            "value" : "200",
             "id" : 1
           } ],
           "id" : 2
@@ -567,15 +534,48 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 6
+            "id" : 3
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 7
+            "id" : 4
           } ],
-          "id" : 8
+          "id" : 5
         } ],
-        "id" : 9
+        "id" : 6
+      }, {
+        "type" : "h11.PlayedSong",
+        "fields" : [ {
+          "name" : "song",
+          "type" : "h11.Song",
+          "fields" : [ {
+            "name" : "title",
+            "type" : "java.lang.String",
+            "value" : "Song 3",
+            "id" : 12
+          }, {
+            "name" : "durationInSeconds",
+            "type" : "java.lang.Integer",
+            "value" : "300",
+            "id" : 13
+          } ],
+          "id" : 14
+        }, {
+          "name" : "playedAt",
+          "type" : "java.util.Date",
+          "fields" : [ {
+            "name" : "fastTime",
+            "type" : "java.lang.Long",
+            "value" : "1",
+            "id" : 3
+          }, {
+            "name" : "cdate",
+            "type" : "null",
+            "id" : 4
+          } ],
+          "id" : 18
+        } ],
+        "id" : 19
       } ],
       "id" : 26
     } ],
@@ -590,14 +590,14 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 1",
-          "id" : 15
+          "id" : 7
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "100",
-          "id" : 16
+          "id" : 8
         } ],
-        "id" : 17
+        "id" : 9
       }, {
         "type" : "java.lang.Long",
         "value" : "2",
@@ -612,14 +612,14 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 2",
-          "id" : 3
+          "id" : 0
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "200",
-          "id" : 4
+          "id" : 1
         } ],
-        "id" : 5
+        "id" : 2
       }, {
         "type" : "java.lang.Long",
         "value" : "2",
@@ -634,14 +634,14 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 3",
-          "id" : 0
+          "id" : 12
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "300",
-          "id" : 1
+          "id" : 13
         } ],
-        "id" : 2
+        "id" : 14
       }, {
         "type" : "java.lang.Long",
         "value" : "2",
@@ -669,6 +669,24 @@
   "entryPoint" : "h11.User#getTopPlayedSongsList()",
   "arguments" : [ ],
   "calls" : [ {
+    "id" : 6,
+    "methodCalls" : [ {
+      "methodName" : "song",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 11,
+    "methodCalls" : [ {
+      "methodName" : "song",
+      "invocations" : [ {
+        "return" : 9,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
     "id" : 2,
     "methodCalls" : [ {
       "methodName" : "title",
@@ -678,29 +696,11 @@
       } ]
     } ]
   }, {
-    "id" : 5,
+    "id" : 9,
     "methodCalls" : [ {
       "methodName" : "title",
       "invocations" : [ {
-        "return" : 3,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 9,
-    "methodCalls" : [ {
-      "methodName" : "song",
-      "invocations" : [ {
-        "return" : 5,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 11,
-    "methodCalls" : [ {
-      "methodName" : "song",
-      "invocations" : [ {
-        "return" : 2,
+        "return" : 7,
         "parameter" : [ ]
       } ]
     } ]
@@ -738,14 +738,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 1",
-            "id" : 0
+            "id" : 7
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "100",
-            "id" : 1
+            "id" : 8
           } ],
-          "id" : 2
+          "id" : 9
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -753,11 +753,11 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 6
+            "id" : 3
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 7
+            "id" : 4
           } ],
           "id" : 10
         } ],
@@ -771,14 +771,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 2",
-            "id" : 3
+            "id" : 0
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "200",
-            "id" : 4
+            "id" : 1
           } ],
-          "id" : 5
+          "id" : 2
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -786,15 +786,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 6
+            "id" : 3
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 7
+            "id" : 4
           } ],
-          "id" : 8
+          "id" : 5
         } ],
-        "id" : 9
+        "id" : 6
       } ],
       "id" : 14
     } ],
@@ -809,18 +809,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 1",
-          "id" : 0
+          "id" : 7
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "100",
-          "id" : 1
+          "id" : 8
         } ],
-        "id" : 2
+        "id" : 9
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 6
+        "id" : 3
       } ],
       "id" : 16
     }, {
@@ -831,18 +831,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 2",
-          "id" : 3
+          "id" : 0
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "200",
-          "id" : 4
+          "id" : 1
         } ],
-        "id" : 5
+        "id" : 2
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 6
+        "id" : 3
       } ],
       "id" : 17
     } ],
@@ -901,6 +901,24 @@
   "entryPoint" : "h11.User#getTopPlayedSongsList()",
   "arguments" : [ ],
   "calls" : [ {
+    "id" : 2,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 0,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 9,
+    "methodCalls" : [ {
+      "methodName" : "song",
+      "invocations" : [ {
+        "return" : 5,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
     "id" : 35,
     "methodCalls" : [ {
       "methodName" : "getPlayCounts",
@@ -910,83 +928,47 @@
       } ]
     } ]
   }, {
-    "id" : 4,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 2,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 31,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 29,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 18,
-    "methodCalls" : [ {
-      "methodName" : "song",
-      "invocations" : [ {
-        "return" : 16,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
     "id" : 21,
     "methodCalls" : [ {
-      "methodName" : "title",
+      "methodName" : "song",
       "invocations" : [ {
         "return" : 19,
         "parameter" : [ ]
       } ]
     } ]
   }, {
-    "id" : 16,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 14,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 13,
+    "id" : 31,
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 11,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 28,
-    "methodCalls" : [ {
-      "methodName" : "song",
-      "invocations" : [ {
-        "return" : 26,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 11,
-    "methodCalls" : [ {
-      "methodName" : "title",
-      "invocations" : [ {
-        "return" : 9,
+        "return" : 29,
         "parameter" : [ ]
       } ]
     } ]
   }, {
     "id" : 26,
     "methodCalls" : [ {
-      "methodName" : "title",
+      "methodName" : "song",
       "invocations" : [ {
         "return" : 24,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 14,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 12,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 5,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 3,
         "parameter" : [ ]
       } ]
     } ]
@@ -995,25 +977,43 @@
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 31,
+        "return" : 2,
         "parameter" : [ ]
       } ]
     } ]
   }, {
-    "id" : 23,
+    "id" : 16,
     "methodCalls" : [ {
       "methodName" : "song",
       "invocations" : [ {
-        "return" : 21,
+        "return" : 14,
         "parameter" : [ ]
       } ]
     } ]
   }, {
-    "id" : 8,
+    "id" : 24,
     "methodCalls" : [ {
-      "methodName" : "song",
+      "methodName" : "title",
       "invocations" : [ {
-        "return" : 4,
+        "return" : 22,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 19,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 17,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 29,
+    "methodCalls" : [ {
+      "methodName" : "title",
+      "invocations" : [ {
+        "return" : 27,
         "parameter" : [ ]
       } ]
     } ]
@@ -1024,12 +1024,12 @@
       "name" : "username",
       "type" : "java.lang.String",
       "value" : "User 7",
-      "id" : 0
+      "id" : 10
     }, {
       "name" : "pricePerMonth",
       "type" : "java.lang.Double",
       "value" : "0.0",
-      "id" : 1
+      "id" : 11
     }, {
       "name" : "playingHistory",
       "type" : "java.util.ArrayList",
@@ -1042,14 +1042,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 1",
-            "id" : 2
+            "id" : 12
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "100",
-            "id" : 3
+            "id" : 13
           } ],
-          "id" : 4
+          "id" : 14
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -1057,15 +1057,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 5
+            "id" : 6
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 6
+            "id" : 7
           } ],
-          "id" : 7
+          "id" : 15
         } ],
-        "id" : 8
+        "id" : 16
       }, {
         "type" : "h11.PlayedSong",
         "fields" : [ {
@@ -1075,14 +1075,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 2",
-            "id" : 9
+            "id" : 17
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "200",
-            "id" : 10
+            "id" : 18
           } ],
-          "id" : 11
+          "id" : 19
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -1090,15 +1090,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 5
+            "id" : 6
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 6
+            "id" : 7
           } ],
-          "id" : 12
+          "id" : 20
         } ],
-        "id" : 13
+        "id" : 21
       }, {
         "type" : "h11.PlayedSong",
         "fields" : [ {
@@ -1108,14 +1108,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 3",
-            "id" : 14
+            "id" : 3
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "300",
-            "id" : 15
+            "id" : 4
           } ],
-          "id" : 16
+          "id" : 5
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -1123,15 +1123,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 5
+            "id" : 6
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 6
+            "id" : 7
           } ],
-          "id" : 17
+          "id" : 8
         } ],
-        "id" : 18
+        "id" : 9
       }, {
         "type" : "h11.PlayedSong",
         "fields" : [ {
@@ -1141,14 +1141,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 4",
-            "id" : 19
+            "id" : 22
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "400",
-            "id" : 20
+            "id" : 23
           } ],
-          "id" : 21
+          "id" : 24
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -1156,15 +1156,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 5
+            "id" : 6
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 6
+            "id" : 7
           } ],
-          "id" : 22
+          "id" : 25
         } ],
-        "id" : 23
+        "id" : 26
       }, {
         "type" : "h11.PlayedSong",
         "fields" : [ {
@@ -1174,14 +1174,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 5",
-            "id" : 24
+            "id" : 27
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "0",
-            "id" : 25
+            "id" : 28
           } ],
-          "id" : 26
+          "id" : 29
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -1189,15 +1189,15 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 5
+            "id" : 6
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 6
+            "id" : 7
           } ],
-          "id" : 27
+          "id" : 30
         } ],
-        "id" : 28
+        "id" : 31
       }, {
         "type" : "h11.PlayedSong",
         "fields" : [ {
@@ -1207,14 +1207,14 @@
             "name" : "title",
             "type" : "java.lang.String",
             "value" : "Song 6",
-            "id" : 29
+            "id" : 0
           }, {
             "name" : "durationInSeconds",
             "type" : "java.lang.Integer",
             "value" : "500",
-            "id" : 30
+            "id" : 1
           } ],
-          "id" : 31
+          "id" : 2
         }, {
           "name" : "playedAt",
           "type" : "java.util.Date",
@@ -1222,11 +1222,11 @@
             "name" : "fastTime",
             "type" : "java.lang.Long",
             "value" : "1",
-            "id" : 5
+            "id" : 6
           }, {
             "name" : "cdate",
             "type" : "null",
-            "id" : 6
+            "id" : 7
           } ],
           "id" : 32
         } ],
@@ -1245,18 +1245,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 1",
-          "id" : 2
+          "id" : 12
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "100",
-          "id" : 3
+          "id" : 13
         } ],
-        "id" : 4
+        "id" : 14
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 5
+        "id" : 6
       } ],
       "id" : 36
     }, {
@@ -1267,18 +1267,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 2",
-          "id" : 9
+          "id" : 17
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "200",
-          "id" : 10
+          "id" : 18
         } ],
-        "id" : 11
+        "id" : 19
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 5
+        "id" : 6
       } ],
       "id" : 37
     }, {
@@ -1289,18 +1289,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 3",
-          "id" : 14
+          "id" : 3
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "300",
-          "id" : 15
+          "id" : 4
         } ],
-        "id" : 16
+        "id" : 5
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 5
+        "id" : 6
       } ],
       "id" : 38
     }, {
@@ -1311,18 +1311,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 4",
-          "id" : 19
+          "id" : 22
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "400",
-          "id" : 20
+          "id" : 23
         } ],
-        "id" : 21
+        "id" : 24
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 5
+        "id" : 6
       } ],
       "id" : 39
     }, {
@@ -1333,18 +1333,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 5",
-          "id" : 24
+          "id" : 27
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "0",
-          "id" : 25
+          "id" : 28
         } ],
-        "id" : 26
+        "id" : 29
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 5
+        "id" : 6
       } ],
       "id" : 40
     }, {
@@ -1355,18 +1355,18 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Song 6",
-          "id" : 29
+          "id" : 0
         }, {
           "name" : "durationInSeconds",
           "type" : "java.lang.Integer",
           "value" : "500",
-          "id" : 30
+          "id" : 1
         } ],
-        "id" : 31
+        "id" : 2
       }, {
         "type" : "java.lang.Long",
         "value" : "1",
-        "id" : 5
+        "id" : 6
       } ],
       "id" : 41
     } ],

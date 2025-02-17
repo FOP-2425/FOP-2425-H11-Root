@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertNotNull;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertTrue;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.emptyContext;
@@ -32,14 +33,16 @@ import static org.tudalgo.algoutils.tutor.general.assertions.Assertions4.assertI
 
 public class H11_TestP {
 
-    public void assertContainsAll(List<?> expected, List<?> actual, Context context) {
-        assertEquals(expected.size(), actual.size(), context, r -> "List does not contain same amount of items.");
+    public static void assertContainsAll(List<?> expected, List<?> actual, Context context) {
+        assertNotNull(actual, context, r -> "The returned List is null and should not have been");
 
         Context contextComplete = contextBuilder()
             .add(context)
             .add("actual", actual)
             .add("expected", expected)
             .build();
+
+        assertEquals(expected.size(), actual.size(), contextComplete, r -> "List does not contain same amount of items.");
 
         for (int i = 0; i < expected.size(); i++) {
             int finalI = i;
@@ -47,25 +50,29 @@ public class H11_TestP {
             assertTrue(
                 expected.stream().anyMatch(
                     exp -> {
-                        if (exp == null){
+                        if (exp == null) {
                             return actual.get(finalI) == null;
                         }
                         return exp.equals(actual.get(finalI));
                     }),
                 contextComplete,
-                r -> "Actual List does not contain all expected Elements. Actual " + finalI + " not found!"
+                r -> "Actual List does not contain all expected Elements. Actual "
+                    + finalI
+                    + " was not found in expected elements!"
             );
         }
     }
 
-    public void assertContainsAll(Map<?, ?> expected, Map<?, ?> actual, Context context) {
-        assertEquals(expected.size(), actual.size(), context, r -> "Map does not contain same amount of items.");
+    public static void assertContainsAll(Map<?, ?> expected, Map<?, ?> actual, Context context) {
+        assertNotNull(actual, context, r -> "The returned Map is null and should not have been");
 
         Context contextComplete = contextBuilder()
             .add(context)
             .add("actual", actual)
             .add("expected", expected)
             .build();
+
+        assertEquals(expected.size(), actual.size(), contextComplete, r -> "Map does not contain same amount of items.");
 
         List<Map.Entry<?, ?>> actualEntrys = new ArrayList<>(actual.entrySet());
         for (int i = 0; i < expected.size(); i++) {
@@ -93,8 +100,8 @@ public class H11_TestP {
         }
     }
 
-    public void assertListEquals(List<?> expected, List<?> actual, Context context) {
-        assertEquals(expected.size(), actual.size(), context, r -> "List does not contain same amount of items.");
+    public static void assertListEquals(List<?> expected, List<?> actual, Context context) {
+        assertNotNull(actual, context, r -> "The returned List is null and should not have been");
 
         Context contextComplete = contextBuilder()
             .add(context)
@@ -102,23 +109,33 @@ public class H11_TestP {
             .add("expected", expected)
             .build();
 
+        assertEquals(expected.size(), actual.size(), contextComplete, r -> "List does not contain same amount of items.");
+
         for (int i = 0; i < expected.size(); i++) {
             int finalI = i;
 
             boolean equals;
             if (expected.get(i) == null) {
-                equals =  actual.get(finalI) == null;
+                equals = actual.get(finalI) == null;
             } else {
-                equals =  expected.get(i).equals(actual.get(i));
+                equals = expected.get(i).equals(actual.get(i));
             }
 
-            assertTrue(equals, contextComplete, r -> "Actual List does not match expected Elements. Actual at " + finalI + " is not the same as expected!");
+            assertTrue(
+                equals,
+                contextComplete,
+                r -> "Actual List does not match expected Elements. Actual at " + finalI + " is not the same as expected!"
+            );
         }
     }
 
-    public void assertNoLoopOrRecursion(Method methodToCheck) {
-        assertIsNotRecursively(BasicMethodLink.of(methodToCheck).getCtElement(), emptyContext(), r -> "Method %s uses recursion.".formatted(methodToCheck.getName()));
-        if (BasicMethodLink.of(methodToCheck).getCtElement().getElements(e-> e instanceof CtFor
+    public static void assertNoLoopOrRecursion(Method methodToCheck) {
+        assertIsNotRecursively(
+            BasicMethodLink.of(methodToCheck).getCtElement(),
+            emptyContext(),
+            r -> "Method %s uses recursion.".formatted(methodToCheck.getName())
+        );
+        if (BasicMethodLink.of(methodToCheck).getCtElement().getElements(e -> e instanceof CtFor
             || e instanceof CtForEach
             || e instanceof CtWhile
             || e instanceof CtDo).isEmpty()) {
@@ -130,11 +147,12 @@ public class H11_TestP {
         );
     }
 
-    public static Stream<Arguments> parseJsonFile(String filename){
+    public static Stream<Arguments> parseJsonFile(String filename) {
         final ArrayNode rootNode;
-        if (TestCycleResolver.getTestCycle() != null){
+        if (TestCycleResolver.getTestCycle() != null) {
 
-            URL url = H11_TestP.class.getResource(filename.replaceFirst(ReflectionUtils.getExercisePrefix(H11_TestP.class) + "/", ""));
+            URL url =
+                H11_TestP.class.getResource(filename.replaceFirst(ReflectionUtilsP.getExercisePrefix(H11_TestP.class) + "/", ""));
             Assertions.assertNotNull(url, "Could not find JSON file: " + filename);
             try {
                 rootNode = (ArrayNode) new ObjectMapper().readTree(url);
@@ -143,7 +161,8 @@ public class H11_TestP {
             }
         } else {
             try {
-                rootNode = (ArrayNode) new ObjectMapper().readTree(Files.readString(Path.of("src/graderPrivate/resources/" + filename)));
+                rootNode =
+                    (ArrayNode) new ObjectMapper().readTree(Files.readString(Path.of("src/graderPrivate/resources/" + filename)));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

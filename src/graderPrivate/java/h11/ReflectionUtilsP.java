@@ -3,14 +3,18 @@ package h11;
 import com.google.common.primitives.Primitives;
 import org.eclipse.jdt.core.dom.MethodReference;
 import org.jetbrains.annotations.NotNull;
-import org.mockito.Mockito;
 import org.opentest4j.AssertionFailedError;
 import org.sourcegrade.jagr.api.testing.extension.TestCycleResolver;
 import org.tudalgo.algoutils.tutor.general.assertions.Context;
+import org.tudalgo.algoutils.tutor.general.reflections.BasicPackageLink;
+import org.tudalgo.algoutils.tutor.general.reflections.PackageLink;
+import org.tudalgo.algoutils.tutor.general.reflections.TypeLink;
 import sun.misc.Unsafe;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -23,6 +27,7 @@ import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +44,7 @@ import static org.mockito.Mockito.mock;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.fail;
 
-public class ReflectionUtils {
+public class ReflectionUtilsP {
 
     private static Map<String, Class<?>> primitiveStrings = Map.of(
         "byte", byte.class,
@@ -65,7 +70,8 @@ public class ReflectionUtils {
                     declaredField.setAccessible(true);
                     declaredField.set(instance, value);
                     return;
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
             }
 
             //field has setter
@@ -95,21 +101,21 @@ public class ReflectionUtils {
             unsafe.putBoolean(offset, 12, true);
 
             switch (value) {
-                case Boolean val    -> unsafe.putBoolean(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
-                case Character val  -> unsafe.putChar(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
-                case Short val      -> unsafe.putShort(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
-                case Integer val    -> unsafe.putInt(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
-                case Long val       -> unsafe.putLong(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
-                case Double val     -> unsafe.putDouble(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
-                case Float val      -> unsafe.putFloat(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
-                default             -> unsafe.putObject(instance, (long) offset.invoke(theInternalUnsafe, declaredField), value);
+                case Boolean val -> unsafe.putBoolean(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
+                case Character val -> unsafe.putChar(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
+                case Short val -> unsafe.putShort(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
+                case Integer val -> unsafe.putInt(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
+                case Long val -> unsafe.putLong(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
+                case Double val -> unsafe.putDouble(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
+                case Float val -> unsafe.putFloat(instance, (long) offset.invoke(theInternalUnsafe, declaredField), val);
+                default -> unsafe.putObject(instance, (long) offset.invoke(theInternalUnsafe, declaredField), value);
             }
         } catch (IllegalAccessException | NoSuchFieldException | ClassNotFoundException | NoSuchMethodException |
                  InvocationTargetException ignored) {
         }
     }
 
-    public static boolean isSyntheticMock(Class<?> clazz){
+    public static boolean isSyntheticMock(Class<?> clazz) {
         return clazz.getName().contains("org.mockito.codegen.");
     }
 
@@ -136,10 +142,11 @@ public class ReflectionUtils {
             try {
                 f.setAccessible(true);
                 return (T) f.get(instance);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
 
             fieldType = f.getType();
-            if (Primitives.isWrapperType(fieldType)){
+            if (Primitives.isWrapperType(fieldType)) {
                 fieldType = Primitives.unwrap(fieldType);
             }
 
@@ -153,69 +160,138 @@ public class ReflectionUtils {
             unsafe.putBoolean(offset, 12, true);
 
             Object fieldValue;
-            if( boolean.class == fieldType) fieldValue = unsafe.getBoolean(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else if( byte.class == fieldType) fieldValue = unsafe.getByte(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else if( short.class == fieldType) fieldValue = unsafe.getShort(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else if( int.class == fieldType) fieldValue = unsafe.getInt(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else if( long.class == fieldType) fieldValue = unsafe.getLong(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else if( float.class == fieldType) fieldValue = unsafe.getFloat(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else if( double.class == fieldType) fieldValue = unsafe.getDouble(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else if( char.class == fieldType) fieldValue = unsafe.getChar(instance, (long) offset.invoke(theInternalUnsafe, f));
-            else fieldValue = unsafe.getObject(instance, (long) offset.invoke(theInternalUnsafe, f));
+            if (boolean.class == fieldType) {
+                fieldValue = unsafe.getBoolean(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else if (byte.class == fieldType) {
+                fieldValue = unsafe.getByte(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else if (short.class == fieldType) {
+                fieldValue = unsafe.getShort(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else if (int.class == fieldType) {
+                fieldValue = unsafe.getInt(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else if (long.class == fieldType) {
+                fieldValue = unsafe.getLong(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else if (float.class == fieldType) {
+                fieldValue = unsafe.getFloat(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else if (double.class == fieldType) {
+                fieldValue = unsafe.getDouble(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else if (char.class == fieldType) {
+                fieldValue = unsafe.getChar(instance, (long) offset.invoke(theInternalUnsafe, f));
+            } else {
+                fieldValue = unsafe.getObject(instance, (long) offset.invoke(theInternalUnsafe, f));
+            }
             return (T) fieldValue;
-        } catch (NoSuchFieldException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            throw new RuntimeException("Could not get value for Field %s(%s) in %s. Please do not access this field.".formatted(
-                fieldName,
-                fieldType,
-                instance.getClass()
-            ), e);
+        } catch (NoSuchFieldException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                 IllegalAccessException e) {
+            throw new RuntimeException(
+                "Could not get value for Field %s(%s) in %s. Please do not access this field.".formatted(
+                    fieldName,
+                    fieldType,
+                    instance.getClass()
+                ), e
+            );
         }
     }
 
-    public static void copyFields(Object source, Object dest){
-        for (Field f: source.getClass().getDeclaredFields()) {
+    public static void copyFields(Object source, Object dest) {
+        for (Field f : source.getClass().getDeclaredFields()) {
             setFieldValue(dest, f.getName(), getFieldValue(source, f.getName()));
         }
     }
 
-    public static boolean equalsForMocks(Object a, Object b){
-        if (!a.getClass().equals(b.getClass())){
+    public static boolean equalsForMocks(Object a, Object b) {
+        if (a.equals(b) || b.equals(a)) {
+            return true;
+        }
+        if (!a.getClass().equals(b.getClass())) {
+//            System.out.println("  class not equals");
             return false;
         }
-        if (!Mockito.mockingDetails(a).isMock()){
+//        if (!Mockito.mockingDetails(a).isMock()){
+////            System.out.println("  a is not a mock");
+////            System.out.println("  " + a.getClass() + ": " + a);
+//            return a.equals(b);
+//        } else if (!Mockito.mockingDetails(b).isMock()) {
+////            System.out.println("  b is not a mock");
+//            return b.equals(a);
+//        }
+        if (actsLikePrimitive(a.getClass())) {
+//            System.out.println("  a is not a mock");
+//            System.out.println("  " + a.getClass() + ": " + a);
             return a.equals(b);
-        } else if (!Mockito.mockingDetails(b).isMock()) {
+        } else if (actsLikePrimitive(b.getClass())) {
+//            System.out.println("  b is not a mock");
             return b.equals(a);
         }
-        for (Field f: a.getClass().getDeclaredFields()) {
-            
-            if (!equalsForMocks(getFieldValue(a, f.getName()), getFieldValue(b, f.getName()))){
+
+        for (Field f : Arrays.stream(a.getClass().getDeclaredFields())
+            .filter(f -> !Modifier.isStatic(f.getModifiers()))
+            .toList()) {
+
+            if (!equalsForMocks(getFieldValue(a, f.getName()), getFieldValue(b, f.getName()))) {
+//                System.out.println("  field " + f.getName() + " does not equal");
                 return false;
             }
         }
         return true;
     }
 
-    public static Object findInFields(Object toFind, Object toFindIn){
-        if (actsLikePrimitive(toFindIn.getClass())){
+    public static Object findInFields(Object toFind, Object toFindIn) {
+        return findInFields(toFind, toFindIn, new ArrayList<>());
+    }
+
+    private static Object findInFields(Object toFind, Object toFindIn, List<Object> searched) {
+        if (searched.contains(toFindIn)) {
             return null;
         }
-        if (equalsForMocks(toFind, toFindIn)){
+        searched.add(toFindIn);
+        if (toFindIn == null) {
+            return null;
+        }
+        if (actsLikePrimitive(toFindIn.getClass())) {
+            return null;
+        }
+        if (equalsForMocks(toFind, toFindIn)) {
             return toFindIn;
         }
-        for (Field f: toFindIn.getClass().getDeclaredFields()) {
-            if (Modifier.isStatic(f.getModifiers())){
+        if (toFindIn instanceof Iterable<?> iterable) {
+            for (Object element : iterable) {
+                if (element == null) {
+                    continue;
+                }
+                Object found = findInFields(toFind, element, searched);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        if (toFindIn.getClass().isArray()) {
+            int length = Array.getLength(toFindIn);
+            for (int count = 0; count < length; count++) {
+                Object element = Array.get(toFindIn, count);
+                if (element == null) {
+                    continue;
+                }
+                Object found = findInFields(toFind, element, searched);
+                if (found != null) {
+                    return found;
+                }
+            }
+            return null;
+        }
+
+        for (Field f : toFindIn.getClass().getDeclaredFields()) {
+            if (Modifier.isStatic(f.getModifiers())) {
                 continue;
             }
-            Object found = findInFields(toFind, getFieldValue(toFindIn, f.getName()));
-            if (found != null){
+            Object found = findInFields(toFind, getFieldValue(toFindIn, f.getName()), searched);
+            if (found != null) {
                 return found;
             }
         }
         return null;
     }
 
-    public static Class<?> getClassFromPrimitiveString(String string){
+    public static Class<?> getClassFromPrimitiveString(String string) {
         return primitiveStrings.get(string);
     }
 
@@ -226,7 +302,7 @@ public class ReflectionUtils {
             type == String.class;
     }
 
-    public static List<Class<?>> getSuperClassesIncludingSelf(Class<?> clazz){
+    public static List<Class<?>> getSuperClassesIncludingSelf(Class<?> clazz) {
         List<Class<?>> classes = new ArrayList<>();
         Deque<Class<?>> classDeque = new ArrayDeque<>();
 
@@ -239,7 +315,7 @@ public class ReflectionUtils {
             if (clazz.getSuperclass() != null) {
                 classDeque.add(clazz.getSuperclass());
             }
-            if (clazz.getInterfaces().length > 0){
+            if (clazz.getInterfaces().length > 0) {
                 classDeque.addAll(List.of(clazz.getInterfaces()));
             }
 
@@ -254,28 +330,32 @@ public class ReflectionUtils {
             .toList();
     }
 
-    public static boolean isLambda(Class<?> clazz){
+    public static boolean isLambda(Class<?> clazz) {
         return clazz.isSynthetic() && clazz.getDeclaredMethods().length == 1 && !clazz.getDeclaredMethods()[0].isSynthetic();
     }
 
     public static boolean isObjectMethod(Method methodToCheck) {
-        List<String> objectMethods = List.of("getClass", "hashCode", "equals", "clone", "toString", "notify", "notifyAll", "wait", "finalize");
+        List<String> objectMethods =
+            List.of("getClass", "hashCode", "equals", "clone", "toString", "notify", "notifyAll", "wait", "finalize");
         return objectMethods.contains(methodToCheck.getName());
     }
 
-    public static Object callMethod(Object invoked, Method method, Object... arguments){
+    public static Object callMethod(Object invoked, Method method, Object... arguments) {
+//        System.out.println("Calling method of object: " + new JsonConverter().toJsonNode(invoked));
         try {
             return method.invoke(invoked, arguments);
         } catch (IllegalArgumentException | IllegalAccessException e) {
             Context context = contextBuilder()
                 .add("Object", invoked)
-                .add("Parameters", Arrays.stream(arguments)
-                    .map(o -> o != null ? o.toString() : o)
-                    .toList()
+                .add(
+                    "Parameters", Arrays.stream(arguments)
+                        .map(o -> o != null ? o.toString() : o)
+                        .toList()
                 )
-                .add("Stacktrace", Arrays.stream(e.getStackTrace())
-                    .map(Object::toString)
-                    .collect(Collectors.joining("\n                 "))
+                .add(
+                    "Stacktrace", Arrays.stream(e.getStackTrace())
+                        .map(Object::toString)
+                        .collect(Collectors.joining("\n                 "))
                 )
                 .build();
             fail(context, r -> "Method " + method.getName() + "() can not be accessed or invoked with the supplied arguments!");
@@ -283,22 +363,19 @@ public class ReflectionUtils {
             Throwable cause = e.getCause();
 
             if (cause instanceof AssertionFailedError) {
-                ReflectionUtils.getUnsafe().throwException(cause);
+                ReflectionUtilsP.getUnsafe().throwException(cause);
             }
 
             Context context = contextBuilder()
                 .add("Object", invoked)
-                .add("Parameters", Arrays.stream(arguments)
-                    .map(o -> o != null ? o.toString() : o)
-                    .toList()
+                .add(
+                    "Parameters", Arrays.stream(arguments)
+                        .map(o -> o != null ? o.toString() : o)
+                        .toList()
                 )
                 .add("Exception Class", cause.getClass())
                 .add("Message", cause.getMessage())
-                .add("Stacktrace", Arrays.stream(cause.getStackTrace())
-                    .map(Object::toString)
-                    .takeWhile(s -> !s.contains("java.base") && !s.contains("org.junit.jupiter"))
-                    .collect(Collectors.joining("\n                 "))
-                )
+                .add("Stacktrace", formatStackTrace(cause))
                 .build();
             fail(context, r -> "Method " + method.getName() + "() threw an exception!");
         }
@@ -306,11 +383,13 @@ public class ReflectionUtils {
         throw new RuntimeException("fail did not trigger correctly!");
     }
 
-    public static @NotNull Method getMethodForParameters(String methodName, Class<?> clazz, List<Object> parameters) throws NoSuchMethodException {
+    public static @NotNull Method getMethodForParameters(String methodName, Class<?> clazz, List<Object> parameters)
+        throws NoSuchMethodException {
         return getMethodForParameters(methodName, clazz, parameters, true);
     }
 
-    public static @NotNull Method getMethodForParameters(String methodName, Class<?> clazz, List<Object> parameters, boolean includeMockitoSynthetic) throws NoSuchMethodException {
+    public static @NotNull Method getMethodForParameters(String methodName, Class<?> clazz, List<Object> parameters,
+                                                         boolean includeMockitoSynthetic) throws NoSuchMethodException {
         return getAllMethods(clazz, includeMockitoSynthetic).stream()
             .filter(m -> m.getName().equals(methodName))
             .filter(m -> {
@@ -342,21 +421,27 @@ public class ReflectionUtils {
             )
             .findFirst()
             .orElseThrow(() -> {
-                String methodsWithSameName = getAllMethods(clazz, false).stream().filter(m -> m.getName().equals(methodName)).map(Objects::toString).collect(
-                    Collectors.joining("\n"));
-                if (methodsWithSameName.isBlank()){
+                String methodsWithSameName = getAllMethods(clazz, false).stream()
+                    .filter(m -> m.getName().equals(methodName))
+                    .map(Objects::toString)
+                    .collect(
+                        Collectors.joining("\n"));
+                if (methodsWithSameName.isBlank()) {
                     methodsWithSameName = "None";
                 }
-                return new NoSuchMethodException("Could not find method " + methodName + " with parameters " + parameters.stream().map(Object::getClass).map(Primitives::unwrap).toList() + ". Methods with same name:\n" + methodsWithSameName);
+                return new NoSuchMethodException("Could not find method " + methodName + " with parameters " + parameters.stream()
+                    .map(Object::getClass)
+                    .map(Primitives::unwrap)
+                    .toList() + ". Methods with same name:\n" + methodsWithSameName);
             });
     }
 
-    public static Set<Package> getAllPackagesInExercise(Class<?> classInExercise){
+    public static Set<Package> getAllPackagesInExercise(Class<?> classInExercise) {
         if (packages != null) {
             return packages;
         }
 
-        if (TestCycleResolver.getTestCycle() == null){
+        if (TestCycleResolver.getTestCycle() == null) {
             String dir = null;
             try {
                 dir = new File(classInExercise.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent();
@@ -364,7 +449,7 @@ public class ReflectionUtils {
                 e2.printStackTrace();
             }
 
-            try (Stream<@NotNull Path> paths = Files.walk(Paths.get(dir))){
+            try (Stream<@NotNull Path> paths = Files.walk(Paths.get(dir))) {
 
                 Set<Package> packages = paths.toList().stream()
                     .map(Objects::toString)
@@ -376,7 +461,7 @@ public class ReflectionUtils {
                     .map(packageName -> classInExercise.getClassLoader().getDefinedPackage(packageName))
                     .collect(Collectors.toSet());
 
-                ReflectionUtils.packages = packages;
+                ReflectionUtilsP.packages = packages;
 
                 final var resourcePath = "src/graderPrivate/resources/packages.txt";
                 File file = new File(resourcePath);
@@ -395,7 +480,7 @@ public class ReflectionUtils {
             Set<Package> packages = Files.readAllLines(Path.of("src/graderPrivate/resources/packages.txt")).stream()
                 .map(packageName -> classInExercise.getClassLoader().getDefinedPackage(packageName))
                 .collect(Collectors.toSet());
-            ReflectionUtils.packages = packages;
+            ReflectionUtilsP.packages = packages;
 
             return packages;
         } catch (IOException e) {
@@ -404,7 +489,74 @@ public class ReflectionUtils {
 
     }
 
-    public static String getExercisePrefix(Class<?> classInExercise){
+    public static PackageLink getPackageLink(String pack) {
+        PackageLink packageLink;
+        if (TestCycleResolver.getTestCycle() != null) {
+            List classes;
+            try {
+                classes = Files.readAllLines(Path.of("src/graderPrivate/resources/classes/%s.txt".formatted(pack))).stream()
+                    .map(className -> {
+                        try {
+                            return Class.forName(className);
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .toList();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                Constructor<BasicPackageLink> constructor =
+                    BasicPackageLink.class.getDeclaredConstructor(String.class, Collection.class);
+                constructor.setAccessible(true);
+                packageLink = constructor.newInstance(
+                    pack, classes);
+            } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            packageLink = BasicPackageLink.of(pack);
+
+            try {
+
+                final var resourcePath = "src/graderPrivate/resources/classes/%s.txt".formatted(pack);
+                File file = new File(resourcePath);
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+
+                Files.writeString(
+                    file.toPath(),
+                    packageLink.getTypes()
+                        .stream()
+                        .map(TypeLink::reflection)
+                        .map(Class::getName)
+                        .collect(Collectors.joining("\n"))
+                );
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return packageLink;
+    }
+
+    public static String formatStackTrace(Throwable exception) {
+        String stacktrace = Arrays.stream(exception.getStackTrace())
+            .map(Object::toString)
+            .takeWhile(s -> !s.contains("java.base") && !s.contains("org.junit.jupiter"))
+            .collect(Collectors.joining("\n                 "));
+        if (stacktrace.isBlank()) {
+            stacktrace = Arrays.stream(exception.getStackTrace())
+                .map(Object::toString)
+                .takeWhile(s -> !s.contains("org.junit.jupiter"))
+                .dropWhile(s -> s.contains("java.base"))
+                .collect(Collectors.joining("\n                 "));
+        }
+        return stacktrace;
+    }
+
+    public static String getExercisePrefix(Class<?> classInExercise) {
         Pattern pattern = Pattern.compile("^(?<exercise>[a-zA-Z0-9]{3})\\..*");
         Matcher matcher = pattern.matcher(classInExercise.getName());
 

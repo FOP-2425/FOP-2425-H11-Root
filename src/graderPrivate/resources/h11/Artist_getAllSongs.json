@@ -32,7 +32,7 @@
         }, {
           "name" : "genre",
           "type" : "h11.Genre",
-          "value" : "COUNTRY",
+          "value" : "JAZZ",
           "id" : 2
         }, {
           "name" : "songs",
@@ -229,20 +229,20 @@
   "entryPoint" : "h11.Artist#getAllSongs()",
   "arguments" : [ ],
   "calls" : [ {
+    "id" : 3,
+    "methodCalls" : [ {
+      "methodName" : "songs",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
     "id" : 20,
     "methodCalls" : [ {
       "methodName" : "songs",
       "invocations" : [ {
         "return" : 19,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
-    "id" : 4,
-    "methodCalls" : [ {
-      "methodName" : "songs",
-      "invocations" : [ {
-        "return" : 3,
         "parameter" : [ ]
       } ]
     } ]
@@ -253,7 +253,7 @@
       "name" : "name",
       "type" : "java.lang.String",
       "value" : "Artist 3",
-      "id" : 0
+      "id" : 4
     }, {
       "name" : "albums",
       "type" : "java.util.ArrayList",
@@ -263,19 +263,19 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Album 3",
-          "id" : 1
+          "id" : 0
         }, {
           "name" : "genre",
           "type" : "h11.Genre",
-          "value" : "COUNTRY",
-          "id" : 2
+          "value" : "KPOP",
+          "id" : 1
         }, {
           "name" : "songs",
           "type" : "java.util.ArrayList",
           "value" : [ ],
-          "id" : 3
+          "id" : 2
         } ],
-        "id" : 4
+        "id" : 3
       }, {
         "type" : "h11.Album",
         "fields" : [ {
@@ -286,7 +286,7 @@
         }, {
           "name" : "genre",
           "type" : "h11.Genre",
-          "value" : "ELECTRONIC",
+          "value" : "OTHER",
           "id" : 6
         }, {
           "name" : "songs",
@@ -409,11 +409,11 @@
   "entryPoint" : "h11.Artist#getAllSongs()",
   "arguments" : [ ],
   "calls" : [ {
-    "id" : 21,
+    "id" : 22,
     "methodCalls" : [ {
       "methodName" : "songs",
       "invocations" : [ {
-        "return" : 20,
+        "return" : 21,
         "parameter" : [ ]
       } ]
     } ]
@@ -424,7 +424,7 @@
       "name" : "name",
       "type" : "java.lang.String",
       "value" : "Artist 4",
-      "id" : 22
+      "id" : 0
     }, {
       "name" : "albums",
       "type" : "java.util.ArrayList",
@@ -434,12 +434,12 @@
           "name" : "title",
           "type" : "java.lang.String",
           "value" : "Album 6",
-          "id" : 0
+          "id" : 1
         }, {
           "name" : "genre",
           "type" : "h11.Genre",
-          "value" : "DANCE",
-          "id" : 1
+          "value" : "HIPHOP",
+          "id" : 2
         }, {
           "name" : "songs",
           "type" : "java.util.ArrayList",
@@ -449,172 +449,172 @@
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 1",
-              "id" : 2
+              "id" : 3
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "100",
-              "id" : 3
+              "id" : 4
             } ],
-            "id" : 4
+            "id" : 5
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 2",
-              "id" : 5
+              "id" : 6
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "200",
-              "id" : 6
+              "id" : 7
             } ],
-            "id" : 7
+            "id" : 8
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 3",
-              "id" : 8
+              "id" : 9
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "300",
-              "id" : 9
+              "id" : 10
             } ],
-            "id" : 10
+            "id" : 11
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 4",
-              "id" : 11
+              "id" : 12
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "400",
-              "id" : 12
+              "id" : 13
             } ],
-            "id" : 13
+            "id" : 14
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 5",
-              "id" : 14
+              "id" : 15
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "0",
-              "id" : 15
+              "id" : 16
             } ],
-            "id" : 16
+            "id" : 17
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 6",
-              "id" : 17
+              "id" : 18
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "500",
-              "id" : 18
+              "id" : 19
             } ],
-            "id" : 19
+            "id" : 20
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 1",
-              "id" : 2
+              "id" : 3
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "100",
-              "id" : 3
+              "id" : 4
             } ],
-            "id" : 4
+            "id" : 5
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 2",
-              "id" : 5
+              "id" : 6
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "200",
-              "id" : 6
+              "id" : 7
             } ],
-            "id" : 7
+            "id" : 8
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 3",
-              "id" : 8
+              "id" : 9
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "300",
-              "id" : 9
+              "id" : 10
             } ],
-            "id" : 10
+            "id" : 11
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 4",
-              "id" : 11
+              "id" : 12
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "400",
-              "id" : 12
+              "id" : 13
             } ],
-            "id" : 13
+            "id" : 14
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 5",
-              "id" : 14
+              "id" : 15
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "0",
-              "id" : 15
+              "id" : 16
             } ],
-            "id" : 16
+            "id" : 17
           }, {
             "type" : "h11.Song",
             "fields" : [ {
               "name" : "title",
               "type" : "java.lang.String",
               "value" : "Song 6",
-              "id" : 17
+              "id" : 18
             }, {
               "name" : "durationInSeconds",
               "type" : "java.lang.Integer",
               "value" : "500",
-              "id" : 18
+              "id" : 19
             } ],
-            "id" : 19
+            "id" : 20
           } ],
-          "id" : 20
+          "id" : 21
         } ],
-        "id" : 21
+        "id" : 22
       } ],
       "id" : 23
     } ],
@@ -799,7 +799,7 @@
         }, {
           "name" : "genre",
           "type" : "h11.Genre",
-          "value" : "COUNTRY",
+          "value" : "JAZZ",
           "id" : 15
         }, {
           "name" : "songs",
@@ -902,7 +902,7 @@
         }, {
           "name" : "genre",
           "type" : "h11.Genre",
-          "value" : "RAP",
+          "value" : "ALTERNATIVE",
           "id" : 1
         }, {
           "name" : "songs",

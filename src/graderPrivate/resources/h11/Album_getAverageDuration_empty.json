@@ -13,7 +13,7 @@
     }, {
       "name" : "genre",
       "type" : "h11.Genre",
-      "value" : "JAZZ",
+      "value" : "CLASSICAL",
       "id" : 1
     }, {
       "name" : "songs",

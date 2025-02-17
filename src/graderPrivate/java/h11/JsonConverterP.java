@@ -19,20 +19,21 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static h11.ReflectionUtils.actsLikePrimitive;
-import static h11.ReflectionUtils.getFieldValue;
-import static h11.ReflectionUtils.getSuperClassesIncludingSelf;
-import static h11.ReflectionUtils.setFieldValue;
+import static h11.ReflectionUtilsP.actsLikePrimitive;
+import static h11.ReflectionUtilsP.getFieldValue;
+import static h11.ReflectionUtilsP.getSuperClassesIncludingSelf;
+import static h11.ReflectionUtilsP.setFieldValue;
 import static org.mockito.Mockito.mock;
 
-public class JsonConverter {
+public class JsonConverterP {
 
     public static final ObjectMapper MAPPER = new ObjectMapper();
 
     protected Map<Class<?>, Function<Object, JsonNode>> typeMapperJSON = new HashMap<>() {{
         put(List.class, (list) -> toJsonNode((List<?>) list));
         put(Map.class, (map) -> toJsonNode((Map<?, ?>) map));
-        put(Map.Entry.class,
+        put(
+            Map.Entry.class,
             (entry) -> MAPPER.createArrayNode()
                 .add(toJsonNode(((Map.Entry) entry).getKey()))
                 .add(toJsonNode(((Map.Entry) entry).getValue()))
@@ -42,7 +43,8 @@ public class JsonConverter {
     protected Map<Class<?>, BiFunction<JsonNode, Answer<?>, Object>> typeMapperObject = new HashMap<>() {{
         put(List.class, (node, answer) -> toList(node, answer));
         put(Map.class, (node, answer) -> toMap(node, answer));
-        put(Map.Entry.class,
+        put(
+            Map.Entry.class,
             (node, answer) -> Map.entry(
                 fromJsonNode((ObjectNode) node.get(0), answer),
                 fromJsonNode((ObjectNode) node.get(1), answer)
@@ -99,9 +101,9 @@ public class JsonConverter {
         List<Field> fields = List.of(objectClass.getDeclaredFields());
 
         //test if class is a lambda
-        if (ReflectionUtils.isLambda(objectClass)) {
+        if (ReflectionUtilsP.isLambda(objectClass)) {
             rootNode.put("type", objectClass.getInterfaces()[0].getName());
-        } else if (ReflectionUtils.isSyntheticMock(objectClass)) {
+        } else if (ReflectionUtilsP.isSyntheticMock(objectClass)) {
             rootNode.put("type", objectClass.getInterfaces()[0].getName());
         } else {
             rootNode.put("type", objectClass.getName());
@@ -116,7 +118,8 @@ public class JsonConverter {
             rootNode.put("value", toMap.toString());
             return rootNode;
         } else if (getSuperClassesIncludingSelf(toMap.getClass()).stream().anyMatch(type -> typeMapperJSON.containsKey(type))) {
-            rootNode.set("value",
+            rootNode.set(
+                "value",
                 typeMapperJSON.get(getSuperClassesIncludingSelf(toMap.getClass()).stream()
                     .filter(type -> typeMapperJSON.containsKey(type))
                     .findFirst()
@@ -128,7 +131,7 @@ public class JsonConverter {
         ArrayNode fieldsJSON = MAPPER.createArrayNode();
 
         //Skip fields for mocks
-        if (!ReflectionUtils.isSyntheticMock(objectClass)) {
+        if (!ReflectionUtilsP.isSyntheticMock(objectClass)) {
             for (Field field : fields) {
                 if (Modifier.isStatic(field.getModifiers())) {
                     continue;
@@ -189,7 +192,7 @@ public class JsonConverter {
             constructed = mock(objectClass, defaultAnswer);
         } else {
             try {
-                constructed = (T) ReflectionUtils.getUnsafe().allocateInstance(objectClass);
+                constructed = (T) ReflectionUtilsP.getUnsafe().allocateInstance(objectClass);
             } catch (InstantiationException e) {
                 throw new RuntimeException(e);
             }

@@ -1,0 +1,8 @@
+h11.solution.PlayedSong
+h11.solution.Artist
+h11.solution.Song
+h11.solution.Album
+h11.solution.Genre
+h11.solution.Main
+h11.solution.User
+h11.solution.MusicStreaming

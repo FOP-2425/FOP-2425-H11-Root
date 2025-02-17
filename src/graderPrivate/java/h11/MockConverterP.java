@@ -7,17 +7,17 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Streams;
-import kotlin.Pair;
 import org.jetbrains.annotations.NotNull;
-import org.mockito.Mockito;
+import org.jetbrains.annotations.Nullable;
 import org.mockito.exceptions.base.MockitoException;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.opentest4j.AssertionFailedError;
+import org.tudalgo.algoutils.student.CrashException;
 import org.tudalgo.algoutils.tutor.general.assertions.Context;
 import org.tudalgo.algoutils.tutor.general.match.BasicStringMatchers;
 import org.tudalgo.algoutils.tutor.general.match.MatchingUtils;
-import org.tudalgo.algoutils.tutor.general.reflections.BasicPackageLink;
+import org.tudalgo.algoutils.tutor.general.reflections.PackageLink;
 import org.tudalgo.algoutils.tutor.general.reflections.TypeLink;
 
 import java.lang.reflect.InvocationTargetException;
@@ -32,18 +32,45 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static h11.ReflectionUtils.isObjectMethod;
+import static h11.ReflectionUtilsP.actsLikePrimitive;
+import static h11.ReflectionUtilsP.formatStackTrace;
+import static h11.ReflectionUtilsP.isObjectMethod;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.fail;
 
-public class MockConverter extends JsonConverter {
+public class MockConverterP extends JsonConverterP {
 
     public static String SOLUTION_PACKAGE_INFIX = "solution";
+
+    protected Map<Class<?>, Function<Object, Object>> solutionMapper = new HashMap<>() {{
+        put(
+            List.class,
+            (list) -> ((List<?>) list).stream()
+                .map(e -> getStudentObjectForSolution(e))
+                .collect(Collectors.toCollection(ArrayList::new))
+        );
+        put(
+            Map.class,
+            (map) -> ((Map<?, ?>) map).entrySet()
+                .stream()
+                .map(e -> Map.entry(getStudentObjectForSolution(e.getKey()), getStudentObjectForSolution(e.getValue())))
+                .collect(Collectors.toMap(Entry::getKey, Entry::getValue))
+        );
+        put(
+            Map.Entry.class,
+            (entry) -> Map.entry(
+                getStudentObjectForSolution(((Entry<?, ?>) entry).getKey()),
+                getStudentObjectForSolution(((Entry<?, ?>) entry).getValue())
+            )
+        );
+    }};
 
     private static Boolean hasSolution;
     private BiMap<Integer, Object> objects = HashBiMap.create();
@@ -51,10 +78,10 @@ public class MockConverter extends JsonConverter {
     private BiMap<Object, Object> solutionMocks = HashBiMap.create();
     private boolean remap = false;
 
-    public MockConverter() {
+    public MockConverterP() {
     }
 
-    public MockConverter(boolean shouldApplyRemapping) {
+    public MockConverterP(boolean shouldApplyRemapping) {
         remap = shouldApplyRemapping;
     }
 
@@ -65,7 +92,7 @@ public class MockConverter extends JsonConverter {
         if (mapped.containsKey(identityHashCode)) {
             return mapped.get(identityHashCode);
         }
-        if (objects.containsValue(toMap) && ReflectionUtils.actsLikePrimitive(toMap.getClass())) {
+        if (objects.containsValue(toMap) && ReflectionUtilsP.actsLikePrimitive(toMap.getClass())) {
             return mapped.get(System.identityHashCode(objects.get(objects.inverse().get(toMap))));
         }
 
@@ -79,9 +106,7 @@ public class MockConverter extends JsonConverter {
 
         if (!objects.containsValue(toMap)) {
             objects.put(objects.size(), toMap);
-        } //else {
-//            throw new IllegalStateException("Could not map object " + toMap + " mush have been created unexpectedly elsewhere");
-//        }
+        }
         mapped.put(identityHashCode, rootNode);
 
         return rootNode;
@@ -98,47 +123,9 @@ public class MockConverter extends JsonConverter {
             return null;
         }
 
-        if (remap) {
-            Class<?> solClass = getSolution(getTypeFromNode(nodeToConvert));
-
-            if (solClass != null) {
-                System.out.println("Replacing %s with %s as solution".formatted(getTypeFromNode(nodeToConvert), solClass));
-                String originalType = nodeToConvert.get("type").asText();
-                nodeToConvert.put("type", solClass.getName());
-
-                Pattern valuePattern = Pattern.compile("\"type\":\"%s\"".formatted(originalType));
-
-                var matcher = valuePattern.matcher(nodeToConvert.toString());
-
-                StringBuffer remapped = new StringBuffer();
-                while (matcher.find()) {
-                    matcher.appendReplacement(remapped, "\"type\":\"" + solClass.getName() + "\"");
-                }
-                matcher.appendTail(remapped);
-
-                ObjectNode mockNode;
-                try {
-                    mockNode = (ObjectNode) MAPPER.readTree(remapped.toString());
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-
-                Object mock = new JsonConverter().fromJsonNode(mockNode, Mockito.CALLS_REAL_METHODS);
-
-                solutionMocks.put(constructed, mock);
-            }
-        }
-
-        if (constructed.getClass().getName().contains("sol")) {
-            throw new RuntimeException("AutoConverter should not create classes from Solution. Use JsonConverter instead.");
-        }
         if (!objects.containsValue(constructed)) {
             objects.put(nodeToConvert.get("id").asInt(), constructed);
-        } //else {
-//            System.out.println(constructed);
-//            throw new IllegalStateException("Could not create object " + constructed + " must have been created unexpectedly
-//            elsewhere");
-//        }
+        }
 
         return (T) constructed;
     }
@@ -151,7 +138,7 @@ public class MockConverter extends JsonConverter {
 
     public static ObjectNode mapCall(Object objectToCall, Method method, boolean includeObjectMethods, Object... arguments)
         throws InvocationTargetException, IllegalAccessException {
-        MockConverter converter = new MockConverter();
+        MockConverterP converter = new MockConverterP();
 
         Map<Object, Map<Method, Set<Invocation>>> calls = new HashMap<>();
 
@@ -171,7 +158,7 @@ public class MockConverter extends JsonConverter {
         Object converted = deepConvertToMocks(objectToCall, answer);
         for (int i = 0; i < arguments.length; i++) {
             Class argClass = arguments[i].getClass();
-            if (ReflectionUtils.isLambda(argClass)) {
+            if (ReflectionUtilsP.isLambda(argClass)) {
                 Object original = arguments[i];
                 arguments[i] = mock(
                     argClass.getInterfaces()[0], invocationOnMock -> {
@@ -186,7 +173,7 @@ public class MockConverter extends JsonConverter {
                     }
                 );
             } else {
-                Object existingMock = ReflectionUtils.findInFields(arguments[i], converted);
+                Object existingMock = ReflectionUtilsP.findInFields(arguments[i], converted);
                 if (existingMock != null) {
                     arguments[i] = existingMock;
                 } else {
@@ -231,7 +218,7 @@ public class MockConverter extends JsonConverter {
 
         converter.setUpObjects(rootNode);
 
-        rootNode.set("expected", new JsonConverter().toJsonNode(expected));
+        rootNode.set("expected", new JsonConverterP().toJsonNode(expected));
 
         return rootNode;
     }
@@ -323,45 +310,128 @@ public class MockConverter extends JsonConverter {
         rootNode.set("calls", jsonCalls);
     }
 
-    public static Pair<Object, Invocation> recreateCallAndInvoke(ObjectNode node) {
-        MockConverter converter = new MockConverter(true);
+    public static List<StudentMethodCall> recreateCallAndInvoke(ObjectNode node) {
+        return List.of(
+            recreateCallAndInvokeUnMocked(node),
+            recreateCallAndInvokeWithMock(node, false),
+            recreateCallAndInvokeWithMock(node, true)
+        );
+    }
 
+    private static StudentMethodCall recreateCallAndInvokeUnMocked(ObjectNode node) {
+        MockConverterP converter = new MockConverterP(false);
+
+        Method entryPoint = getEntryPoint(node);
+
+        MockConverterP.createObjects(node, converter, CALLS_REAL_METHODS);
+
+        Object invoked = converter.objects.get(node.get("invoked").asInt());
+
+        Object[] arguments = Streams.stream(node.get("arguments")).map(id -> converter.objects.get(id.asInt())).toArray();
+
+        Object returnValue = null;
+        Throwable exception = null;
+        try {
+            returnValue = ReflectionUtilsP.callMethod(invoked, entryPoint, arguments);
+        } catch (Throwable t) {
+            exception = t;
+        }
+
+        return new StudentMethodCall(invoked, new Invocation(arguments, returnValue), exception);
+    }
+
+    private static StudentMethodCall recreateCallAndInvokeWithMock(ObjectNode node, boolean useFullSolution) {
+        MockConverterP converter = new MockConverterP(useFullSolution);
+
+        Method entryPoint = getEntryPoint(node);
+
+        Object invoked = recreateObjectsAndCalls(node, converter, entryPoint);
+
+        Object[] arguments = Streams.stream(node.get("arguments")).map(id -> converter.objects.get(id.asInt())).toArray();
+
+        Object returnValue = null;
+        Throwable exception = null;
+        try {
+            returnValue = ReflectionUtilsP.callMethod(invoked, entryPoint, arguments);
+        } catch (Throwable t) {
+            exception = t;
+        }
+
+        return new StudentMethodCall(invoked, new Invocation(arguments, returnValue), exception);
+    }
+
+    private static Method getEntryPoint(ObjectNode node) {
         String[] entryPointString = node.get("entryPoint").asText().split("#");
         String clazz = entryPointString[0];
         String[] method = entryPointString[1].replaceFirst(".$", "").split("\\(");
 
-        Method entryPoint;
         try {
-            entryPoint = Class.forName(clazz).getMethod(
+            return Class.forName(clazz).getMethod(
                 method[0], Arrays.stream(method).skip(1).map(param -> {
                     try {
                         return Class.forName(param);
                     } catch (ClassNotFoundException e) {
-                        return ReflectionUtils.getClassFromPrimitiveString(param);
+                        return ReflectionUtilsP.getClassFromPrimitiveString(param);
                     }
                 }).toArray(Class[]::new)
             );
         } catch (NoSuchMethodException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-        Object invoked = recreateObjectsAndCalls(node, converter, entryPoint);
-
-        Object[] arguments = Streams.stream(node.get("arguments")).map(id -> converter.objects.get(id.asInt())).toArray();
-
-        return new Pair<>(invoked, new Invocation(arguments, ReflectionUtils.callMethod(invoked, entryPoint, arguments)));
     }
 
     public static <T> T recreateObjectsAndCalls(ObjectNode node, Method entryPoint) {
-        return recreateObjectsAndCalls(node, new MockConverter(true), entryPoint);
+        return recreateObjectsAndCalls(node, new MockConverterP(true), entryPoint);
     }
 
-    public static <T> T recreateObjectsAndCalls(ObjectNode node, MockConverter converter, Method entryPoint) {
+    public static <T> T recreateObjectsAndCalls(ObjectNode node, MockConverterP converter, Method entryPoint) {
         Map<Integer, Map<Method, List<Invocation>>> calls = new HashMap<>();
 
         Answer<?> defaultAnswer = converter.createDefaultAnswer(calls, entryPoint);
 
-        converter.createObjects(node, converter, defaultAnswer);
+        MockConverterP.createObjects(node, converter, defaultAnswer);
+
+        if (converter.remap) {
+            Pattern valuePattern = Pattern.compile("\"type\":\"(?<className>[a-zA-Z0-9.-]*)\"");
+
+            var matcher = valuePattern.matcher(node.toString());
+
+            StringBuffer remapped = new StringBuffer();
+            while (matcher.find()) {
+                String className = matcher.group("className");
+                if (className.contains(SOLUTION_PACKAGE_INFIX) || className.contains("null")) {
+                    continue;
+                }
+                try {
+                    Class<?> studentClass = Class.forName(className);
+                    Class<?> solClass = getSolution(studentClass);
+                    if (solClass != null) {
+                        matcher.appendReplacement(remapped, "\"type\":\"" + solClass.getName() + "\"");
+                    }
+                } catch (ClassNotFoundException e) {
+                    // can be ignored as this should never happen
+                    throw new RuntimeException(e);
+                }
+            }
+            matcher.appendTail(remapped);
+
+            ObjectNode mockNode;
+            try {
+                mockNode = (ObjectNode) MAPPER.readTree(remapped.toString());
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+
+            MockConverterP solConverter = new MockConverterP(false);
+            solConverter.createObjects(mockNode, solConverter, CALLS_REAL_METHODS);
+
+            solConverter.objects.forEach((id, solMock) -> {
+                if (solMock.getClass().getName().contains("org.mockito.codegen")) {
+                    return;
+                }
+                converter.solutionMocks.put(converter.objects.get(id), solMock);
+            });
+        }
 
         converter.createCalls(node, calls);
 
@@ -389,7 +459,7 @@ public class MockConverter extends JsonConverter {
 
                     try {
                         if (methodObject == null) {
-                            methodObject = ReflectionUtils.getMethodForParameters(
+                            methodObject = ReflectionUtilsP.getMethodForParameters(
                                 method.get("methodName").asText(),
                                 object.getClass(),
                                 parameters,
@@ -410,7 +480,7 @@ public class MockConverter extends JsonConverter {
         }
     }
 
-    private void createObjects(ObjectNode node, MockConverter converter, Answer<?> defaultAnswer) {
+    private static void createObjects(ObjectNode node, MockConverterP converter, Answer<?> defaultAnswer) {
         ArrayNode objects = (ArrayNode) node.get("objects");
         for (JsonNode object : objects) {
             converter.fromJsonNode((ObjectNode) object, defaultAnswer);
@@ -452,6 +522,8 @@ public class MockConverter extends JsonConverter {
     private Object callRealMethod(InvocationOnMock mockInvocation) {
         try {
             return mockInvocation.callRealMethod();
+        } catch (CrashException e) {
+            throw e;
         } catch (MockitoException e) {
             System.err.println("Tried to call \"" + mockInvocation.getMethod() + "\" on class " + mockInvocation.getMock()
                 .getClass());
@@ -459,17 +531,7 @@ public class MockConverter extends JsonConverter {
         } catch (AssertionFailedError e) {
             throw e;
         } catch (Throwable e) {
-
-            String stacktrace = Arrays.stream(e.getStackTrace())
-                .map(Object::toString)
-                .takeWhile(s -> !s.contains("java.base") && !s.contains("org.junit.jupiter"))
-                .collect(Collectors.joining("\n                 "));
-            if (stacktrace.isBlank()) {
-                stacktrace = Arrays.stream(e.getStackTrace())
-                    .map(Object::toString)
-                    .takeWhile(s -> !s.contains("org.junit.jupiter"))
-                    .collect(Collectors.joining("\n                 "));
-            }
+            String stacktrace = ReflectionUtilsP.formatStackTrace(e);
 
             Context context = contextBuilder()
                 .add("Object", mockInvocation.getMock())
@@ -485,7 +547,7 @@ public class MockConverter extends JsonConverter {
     }
 
     private Object replaceCallWithSolution(InvocationOnMock mockInvocation)
-        throws IllegalAccessException, InvocationTargetException {
+        throws IllegalAccessException {
         Object solMock = solutionMocks.get(mockInvocation.getMock());
 
         //map all parameters to solution mocks if available
@@ -497,25 +559,78 @@ public class MockConverter extends JsonConverter {
                 return obj;
             }).toArray();
 
-        Object returnedObject = null;
+        Object returnedObject;
         try {
             returnedObject =
-                ReflectionUtils.getMethodForParameters(mockInvocation.getMethod().getName(), solMock.getClass(), List.of(params))
+                ReflectionUtilsP.getMethodForParameters(mockInvocation.getMethod().getName(), solMock.getClass(), List.of(params))
                     .invoke(solMock, params);
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Could not find Method %s in Class %s".formatted(
+                mockInvocation.getMethod().getName(),
+                solMock.getClass()
+            ));
+        } catch (InvocationTargetException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof CrashException crash) {
+                throw crash;
+            }
+            String stacktrace = formatStackTrace(cause);
+
+            Context context = contextBuilder()
+                .add("Class", mockInvocation.getMock().getClass())
+                .add("Method", mockInvocation.getMethod().getName())
+                .add("Object", mockInvocation.getMock())
+                .add(
+                    "Parameters",
+                    Arrays.stream(mockInvocation.getArguments()).map(Object::toString).collect(Collectors.joining(", "))
+                )
+                .add("Exception Class", cause.getClass())
+                .add("Exception message", cause.getMessage())
+                .add("Stacktrace", stacktrace)
+                .build();
+            fail(context, r -> "Could not correctly invoke Solution as it threw an exception!");
+            throw new RuntimeException();
         }
 
-        //map returned object back to student object
-        if (solutionMocks.inverse().containsKey(returnedObject)) {
+        return getStudentObjectForSolution(returnedObject);
+    }
+
+    private @Nullable Object getStudentObjectForSolution(Object returnedObject) {
+
+        if (returnedObject == null) {
+            return null;
+        } else if (solutionMocks.inverse().containsKey(returnedObject)) {
             return solutionMocks.inverse().get(returnedObject);
-        } else {
-//            boolean needsRemapping = typeMapperJSON.keySet().stream().anyMatch(unMappedClazz -> unMappedClazz
-//            .isAssignableFrom(returnedObject.getClass()));
+        } else if (actsLikePrimitive(returnedObject.getClass())) {
+            return returnedObject;
+        } else if (typeMapperJSON.keySet()
+            .stream()
+            .anyMatch(mappedClazz -> mappedClazz.isAssignableFrom(returnedObject.getClass()))) {
 
-            //TODO remapping with newly created solution object and non json mockable classes
+            Function<Object, Object> solMapper = solutionMapper.entrySet()
+                .stream()
+                .filter(mappedClazz -> mappedClazz.getKey().isAssignableFrom(returnedObject.getClass()))
+                .findFirst()
+                .get()
+                .getValue();
+
+            return solMapper.apply(returnedObject);
+        } else if (getStudentClass(returnedObject.getClass()) == null) {
+            return returnedObject;
+        } else {
+            for (Map.Entry<Object, Object> mockEntry : solutionMocks.entrySet()) {
+                if (ReflectionUtilsP.equalsForMocks(mockEntry.getValue(), returnedObject)) {
+                    return mockEntry.getKey();
+                }
+            }
+
+            Object studentObject = mock(getStudentClass(returnedObject.getClass()));
+
+            ReflectionUtilsP.copyFields(returnedObject, studentObject);
+            solutionMocks.put(studentObject, returnedObject);
+            System.out.println("returned new mock");
+            return studentObject;
         }
-        return returnedObject;
     }
 
     private Integer getID(Object object) {
@@ -526,12 +641,18 @@ public class MockConverter extends JsonConverter {
     }
 
     public static <T> T deepConvertToMocks(T toConvert, Answer<?> defaultAnswer) {
-        var json = new MockConverter().toJsonNode(toConvert);
-        return new MockConverter().fromJsonNode(json, defaultAnswer);
+        var json = new MockConverterP().toJsonNode(toConvert);
+        return new MockConverterP().fromJsonNode(json, defaultAnswer);
     }
+
+    private static BiMap<Class<?>, Class<?>> solutions = HashBiMap.create();
 
     @SuppressWarnings("removal")
     public static Class<?> getSolution(Class<?> studentClass) {
+        if (solutions.containsKey(studentClass)) {
+            return solutions.get(studentClass);
+        }
+
         String classPackageName = studentClass.getPackageName();
         //test if class is even part of exercise
 
@@ -543,7 +664,7 @@ public class MockConverter extends JsonConverter {
             return null;
         }
 
-        Package closestPackage = ReflectionUtils.getAllPackagesInExercise(studentClass).stream()
+        Package closestPackage = ReflectionUtilsP.getAllPackagesInExercise(studentClass).stream()
             .min((a, b) -> {
                     double simA = MatchingUtils.similarity(a.getName(), classPackageName);
                     double simB = MatchingUtils.similarity(b.getName(), classPackageName);
@@ -573,14 +694,21 @@ public class MockConverter extends JsonConverter {
 
         String solutionPackage = exercise + SOLUTION_PACKAGE_INFIX + pack;
 
-        TypeLink
-            link = BasicPackageLink.of(solutionPackage).getType(BasicStringMatchers.similar(studentClass.getSimpleName(), 0.75));
+        PackageLink packageLink = ReflectionUtilsP.getPackageLink(solutionPackage);
+
+        TypeLink link = packageLink.getType(BasicStringMatchers.similar(studentClass.getSimpleName(), 0.75));
         if (link == null) {
             hasSolution = false;
             return null;
         }
 
+        solutions.put(studentClass, link.reflection());
+
         return link.reflection();
+    }
+
+    public static Class<?> getStudentClass(Class<?> solutionClass) {
+        return solutions.inverse().get(solutionClass);
     }
 
     public static boolean containsNode(JsonNode object, JsonNode toFind) {

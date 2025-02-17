@@ -12,20 +12,20 @@
       } ]
     } ]
   }, {
-    "id" : 25,
-    "methodCalls" : [ {
-      "methodName" : "genre",
-      "invocations" : [ {
-        "return" : 24,
-        "parameter" : [ ]
-      } ]
-    } ]
-  }, {
     "id" : 22,
     "methodCalls" : [ {
       "methodName" : "genre",
       "invocations" : [ {
         "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 25,
+    "methodCalls" : [ {
+      "methodName" : "genre",
+      "invocations" : [ {
+        "return" : 24,
         "parameter" : [ ]
       } ]
     } ]

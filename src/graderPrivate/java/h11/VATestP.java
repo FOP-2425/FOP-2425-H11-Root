@@ -8,7 +8,7 @@ import org.tudalgo.algoutils.tutor.general.reflections.BasicTypeLink;
 import java.lang.reflect.Method;
 
 @TestForSubmission
-public class VATest extends H11_TestP{
+public class VATestP extends H11_TestP {
 
     @Test
     public void testAlbum_getSongsLongerThan_va() {
@@ -36,73 +36,86 @@ public class VATest extends H11_TestP{
 
     @Test
     public void testMusicStreaming_getAllSongs_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getAllSongs")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getAllSongs")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getAllGenres_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getAllGenres")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getAllGenres")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getSongsLongerThan_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getSongsLongerThan")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getSongsLongerThan")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getTopPlayedSongsList_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getTopPlayedSongsList")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getTopPlayedSongsList")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getAlbumsByGenre_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getAlbumsByGenre")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getAlbumsByGenre")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_searchSongs_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("searchSongs")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("searchSongs")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_adjustPrice_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("adjustPrice")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("adjustPrice")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getArtistPlaytimes_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getArtistPlaytimes")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getArtistPlaytimes")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getGlobalPlayCounts_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getGlobalPlayCounts")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getGlobalPlayCounts")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_generateRandomPlaylist_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("generateRandomPlaylist")).reflection();
+        Method method = BasicTypeLink.of(MusicStreaming.class)
+            .getMethod(BasicStringMatchers.identical("generateRandomPlaylist"))
+            .reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getArtistPlaytime_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getArtistPlaytime")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getArtistPlaytime")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
     @Test
     public void testMusicStreaming_getMostPlayedArtist_va() {
-        Method method = BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getMostPlayedArtist")).reflection();
+        Method method =
+            BasicTypeLink.of(MusicStreaming.class).getMethod(BasicStringMatchers.identical("getMostPlayedArtist")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
@@ -132,7 +145,8 @@ public class VATest extends H11_TestP{
 
     @Test
     public void testUser_getTopPlayedSongsList_va() {
-        Method method = BasicTypeLink.of(User.class).getMethod(BasicStringMatchers.identical("getTopPlayedSongsList")).reflection();
+        Method method =
+            BasicTypeLink.of(User.class).getMethod(BasicStringMatchers.identical("getTopPlayedSongsList")).reflection();
         assertNoLoopOrRecursion(method);
     }
 
