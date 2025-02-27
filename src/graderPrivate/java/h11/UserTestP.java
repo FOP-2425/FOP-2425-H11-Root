@@ -242,6 +242,11 @@ public class UserTestP extends H11_TestP {
                     .build();
 
                 List<String> returnedList = ((List<String>) (actual.call().returnValue()));
+                assertTrue(
+                    ((List) (expected)).isEmpty() || (!returnedList.isEmpty()),
+                    context,
+                    r -> "getTopPlayedSongsList() returned empty list when a value should have been returned."
+                );
                 for (int i = 0; i < returnedList.size(); i++) {
                     int finalI = i;
                     assertTrue(
@@ -287,6 +292,11 @@ public class UserTestP extends H11_TestP {
                     .build();
 
                 List<String> returnedList = ((List<String>) (actual.call().returnValue()));
+                assertTrue(
+                    ((List) (expected)).isEmpty() || (!returnedList.isEmpty()),
+                    context,
+                    r -> "getTopPlayedSongsList() returned empty list when a value should have been returned."
+                );
                 assertTrue(
                     returnedList.size() <= 3,
                     context, r ->

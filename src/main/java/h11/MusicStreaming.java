@@ -26,6 +26,7 @@ public record MusicStreaming(List<Artist> artists, List<User> users) {
     public List<Song> getAllSongs() {
         return artists.stream()
             .flatMap(artist -> artist.getAllSongs().stream())
+            .distinct()
             .toList();
     }
 

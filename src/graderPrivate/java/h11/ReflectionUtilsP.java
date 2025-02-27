@@ -11,8 +11,10 @@ import org.tudalgo.algoutils.tutor.general.reflections.PackageLink;
 import org.tudalgo.algoutils.tutor.general.reflections.TypeLink;
 import sun.misc.Unsafe;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -476,25 +478,24 @@ public class ReflectionUtilsP {
             }
         }
 
-        try {
-            Set<Package> packages = Files.readAllLines(Path.of("src/graderPrivate/resources/packages.txt")).stream()
+        Set<Package> packages =
+            new BufferedReader(new InputStreamReader(ReflectionUtilsP.class.getResourceAsStream("/packages.txt")))
+                .lines()
                 .map(packageName -> classInExercise.getClassLoader().getDefinedPackage(packageName))
                 .collect(Collectors.toSet());
-            ReflectionUtilsP.packages = packages;
+        ReflectionUtilsP.packages = packages;
 
-            return packages;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return packages;
 
     }
 
     public static PackageLink getPackageLink(String pack) {
         PackageLink packageLink;
         if (TestCycleResolver.getTestCycle() != null) {
-            List classes;
-            try {
-                classes = Files.readAllLines(Path.of("src/graderPrivate/resources/classes/%s.txt".formatted(pack))).stream()
+            List classes =
+                new BufferedReader(new InputStreamReader(ReflectionUtilsP.class.getResourceAsStream("/classes/%s.txt".formatted(
+                    pack))))
+                    .lines()
                     .map(className -> {
                         try {
                             return Class.forName(className);
@@ -503,9 +504,6 @@ public class ReflectionUtilsP {
                         }
                     })
                     .toList();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
 
             try {
                 Constructor<BasicPackageLink> constructor =

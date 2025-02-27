@@ -47,7 +47,7 @@ public class MusicStreamingTestP extends H11_TestP {
                     .add("parameters", actual.call().arguments())
                     .build();
 
-                assertEquals(
+                Assertions2.assertEquals(
                     expected,
                     actual.invoked(),
                     context,
@@ -84,7 +84,7 @@ public class MusicStreamingTestP extends H11_TestP {
                     .add("parameters", actual.call().arguments())
                     .build();
 
-                assertEquals(
+                Assertions2.assertEquals(
                     expected,
                     actual.invoked(),
                     context,
@@ -316,7 +316,7 @@ public class MusicStreamingTestP extends H11_TestP {
                     .add("parameters", actual.call().arguments())
                     .build();
 
-                assertEquals(
+                Assertions2.assertEquals(
                     expected,
                     actual.call().returnValue(),
                     context,
@@ -427,7 +427,7 @@ public class MusicStreamingTestP extends H11_TestP {
     }
 
     private static Stream<Arguments> provideGetGlobalPlayCounts_order() {
-        return H11_TestP.parseJsonFile("h11/MusicStreaming_getGlobalPlayCounts_order.json");
+        return H11_TestP.parseJsonFile("h11/MusicStreaming_getGlobalPlayCounts_orderP.json");
     }
 
 
@@ -449,7 +449,7 @@ public class MusicStreamingTestP extends H11_TestP {
                     .add("parameters", actual.call().arguments())
                     .build();
 
-                assertEquals(
+                Assertions2.assertEquals(
                     expected,
                     actual.call().returnValue(),
                     context,
@@ -486,7 +486,7 @@ public class MusicStreamingTestP extends H11_TestP {
                     .add("parameters", actual.call().arguments())
                     .build();
 
-                assertEquals(
+                Assertions2.assertEquals(
                     expected,
                     actual.call().returnValue(),
                     context,
@@ -559,9 +559,14 @@ public class MusicStreamingTestP extends H11_TestP {
 
                 List<String> returnedList = ((List<String>) (actual.call().returnValue()));
                 assertTrue(
+                    ((List) (expected)).isEmpty() || (!returnedList.isEmpty()),
+                    context,
+                    r -> "getTopPlayedSongsList() returned empty list when a value should have been returned."
+                );
+                assertTrue(
                     returnedList.size() <= 5,
                     context, r ->
-                        "Expected getTopPlayedSongsList() to return list of length <= 3. But returned list of length " +
+                        "Expected getTopPlayedSongsList() to return list of length <= 5. But returned list of length " +
                             returnedList.size()
                 );
                 for (int i = 0; i < returnedList.size(); i++) {
@@ -574,7 +579,6 @@ public class MusicStreamingTestP extends H11_TestP {
                     );
 
                 }
-                ;
                 return;
             } catch (Throwable e) {
                 lastCall = e;
@@ -616,7 +620,7 @@ public class MusicStreamingTestP extends H11_TestP {
     }
 
     private static Stream<Arguments> provideSearchSongs() {
-        return H11_TestP.parseJsonFile("h11/MusicStreaming_searchSongsP.json");
+        return H11_TestP.parseJsonFile("h11/MusicStreaming_searchSongs.json");
     }
 
 }

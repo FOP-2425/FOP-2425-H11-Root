@@ -14,6 +14,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.opentest4j.AssertionFailedError;
 import org.tudalgo.algoutils.student.CrashException;
+import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.tutor.general.assertions.Context;
 import org.tudalgo.algoutils.tutor.general.match.BasicStringMatchers;
 import org.tudalgo.algoutils.tutor.general.match.MatchingUtils;
@@ -146,6 +147,9 @@ public class MockConverterP extends JsonConverterP {
 
         Answer<?> answer = invocationOnMock -> {
             var returnValue = invocationOnMock.callRealMethod();
+            if (Arrays.stream(invocationOnMock.getMethod().getAnnotations()).anyMatch(ann -> ann.annotationType() == DoNotTouch.class)) {
+                return returnValue;
+            }
             if (!stopRecordingCalls.get()) {
                 calls
                     .computeIfAbsent(invocationOnMock.getMock(), (m) -> new HashMap<>())
@@ -163,6 +167,9 @@ public class MockConverterP extends JsonConverterP {
                 arguments[i] = mock(
                     argClass.getInterfaces()[0], invocationOnMock -> {
                         var returnValue = invocationOnMock.getMethod().invoke(original, invocationOnMock.getArguments());
+                        if (Arrays.stream(invocationOnMock.getMethod().getAnnotations()).anyMatch(ann -> ann.annotationType() == DoNotTouch.class)) {
+                            return returnValue;
+                        }
                         if (!stopRecordingCalls.get()) {
                             calls
                                 .computeIfAbsent(invocationOnMock.getMock(), (m) -> new HashMap<>())
@@ -183,6 +190,8 @@ public class MockConverterP extends JsonConverterP {
             }
         }
 
+        converter.toJsonNode(converted);
+
         Object expected;
         try {
             if (!method.getReturnType().equals(void.class)) {
@@ -200,8 +209,6 @@ public class MockConverterP extends JsonConverterP {
                 ), e
             );
         }
-
-        stopRecordingCalls.set(true);
 
         for (Object argument : arguments) {
             converter.toJsonNode(argument);
