@@ -1,0 +1,262 @@
+[ {
+  "invoked" : 1,
+  "entryPoint" : "h11.MusicStreaming#getMostPlayedArtist()",
+  "arguments" : [ ],
+  "calls" : [ {
+    "id" : 1,
+    "methodCalls" : [ {
+      "methodName" : "getArtistPlaytimes",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  } ],
+  "objects" : [ {
+    "type" : "h11.MusicStreaming",
+    "fields" : [ {
+      "name" : "artists",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 0
+    }, {
+      "name" : "users",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 0
+    } ],
+    "id" : 1
+  }, {
+    "type" : "java.util.HashMap",
+    "value" : [ ],
+    "id" : 2
+  } ],
+  "expected" : {
+    "type" : "null"
+  }
+}, {
+  "invoked" : 4,
+  "entryPoint" : "h11.MusicStreaming#getMostPlayedArtist()",
+  "arguments" : [ ],
+  "calls" : [ {
+    "id" : 4,
+    "methodCalls" : [ {
+      "methodName" : "getArtistPlaytimes",
+      "invocations" : [ {
+        "return" : 6,
+        "parameter" : [ ]
+      } ]
+    }, {
+      "methodName" : "getArtistPlaytime",
+      "invocations" : [ {
+        "return" : 5,
+        "parameter" : [ 2 ]
+      } ]
+    }, {
+      "methodName" : "getGlobalPlayCounts",
+      "invocations" : [ {
+        "return" : 1,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 2,
+    "methodCalls" : [ {
+      "methodName" : "getAllSongs",
+      "invocations" : [ {
+        "return" : 1,
+        "parameter" : [ ]
+      } ]
+    } ]
+  } ],
+  "objects" : [ {
+    "type" : "h11.MusicStreaming",
+    "fields" : [ {
+      "name" : "artists",
+      "type" : "java.util.ArrayList",
+      "value" : [ {
+        "type" : "h11.Artist",
+        "fields" : [ {
+          "name" : "name",
+          "type" : "java.lang.String",
+          "value" : "",
+          "id" : 0
+        }, {
+          "name" : "albums",
+          "type" : "java.util.ArrayList",
+          "value" : [ ],
+          "id" : 1
+        } ],
+        "id" : 2
+      } ],
+      "id" : 3
+    }, {
+      "name" : "users",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 1
+    } ],
+    "id" : 4
+  }, {
+    "type" : "java.util.HashMap",
+    "value" : [ [ {
+      "type" : "h11.Artist",
+      "fields" : [ {
+        "name" : "name",
+        "type" : "java.lang.String",
+        "value" : "",
+        "id" : 0
+      }, {
+        "name" : "albums",
+        "type" : "java.util.ArrayList",
+        "value" : [ ],
+        "id" : 1
+      } ],
+      "id" : 2
+    }, {
+      "type" : "java.lang.Long",
+      "value" : "0",
+      "id" : 5
+    } ] ],
+    "id" : 6
+  } ],
+  "expected" : {
+    "type" : "null"
+  }
+}, {
+  "invoked" : 7,
+  "entryPoint" : "h11.MusicStreaming#getMostPlayedArtist()",
+  "arguments" : [ ],
+  "calls" : [ {
+    "id" : 3,
+    "methodCalls" : [ {
+      "methodName" : "songs",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 5,
+    "methodCalls" : [ {
+      "methodName" : "getAllSongs",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  }, {
+    "id" : 7,
+    "methodCalls" : [ {
+      "methodName" : "getArtistPlaytimes",
+      "invocations" : [ {
+        "return" : 9,
+        "parameter" : [ ]
+      } ]
+    }, {
+      "methodName" : "getArtistPlaytime",
+      "invocations" : [ {
+        "return" : 8,
+        "parameter" : [ 5 ]
+      } ]
+    }, {
+      "methodName" : "getGlobalPlayCounts",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  } ],
+  "objects" : [ {
+    "type" : "h11.MusicStreaming",
+    "fields" : [ {
+      "name" : "artists",
+      "type" : "java.util.ArrayList",
+      "value" : [ {
+        "type" : "h11.Artist",
+        "fields" : [ {
+          "name" : "name",
+          "type" : "java.lang.String",
+          "value" : "",
+          "id" : 0
+        }, {
+          "name" : "albums",
+          "type" : "java.util.ArrayList",
+          "value" : [ {
+            "type" : "h11.Album",
+            "fields" : [ {
+              "name" : "title",
+              "type" : "java.lang.String",
+              "value" : "",
+              "id" : 0
+            }, {
+              "name" : "genre",
+              "type" : "h11.Genre",
+              "value" : "DANCE",
+              "id" : 1
+            }, {
+              "name" : "songs",
+              "type" : "java.util.ArrayList",
+              "value" : [ ],
+              "id" : 2
+            } ],
+            "id" : 3
+          } ],
+          "id" : 4
+        } ],
+        "id" : 5
+      } ],
+      "id" : 6
+    }, {
+      "name" : "users",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 2
+    } ],
+    "id" : 7
+  }, {
+    "type" : "java.util.HashMap",
+    "value" : [ [ {
+      "type" : "h11.Artist",
+      "fields" : [ {
+        "name" : "name",
+        "type" : "java.lang.String",
+        "value" : "",
+        "id" : 0
+      }, {
+        "name" : "albums",
+        "type" : "java.util.ArrayList",
+        "value" : [ {
+          "type" : "h11.Album",
+          "fields" : [ {
+            "name" : "title",
+            "type" : "java.lang.String",
+            "value" : "",
+            "id" : 0
+          }, {
+            "name" : "genre",
+            "type" : "h11.Genre",
+            "value" : "DANCE",
+            "id" : 1
+          }, {
+            "name" : "songs",
+            "type" : "java.util.ArrayList",
+            "value" : [ ],
+            "id" : 2
+          } ],
+          "id" : 3
+        } ],
+        "id" : 4
+      } ],
+      "id" : 5
+    }, {
+      "type" : "java.lang.Long",
+      "value" : "0",
+      "id" : 8
+    } ] ],
+    "id" : 9
+  } ],
+  "expected" : {
+    "type" : "null"
+  }
+} ]

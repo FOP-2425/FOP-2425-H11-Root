@@ -1,0 +1,38 @@
+[ {
+  "invoked" : 3,
+  "entryPoint" : "h11.User#getFavoriteSong()",
+  "arguments" : [ ],
+  "calls" : [ {
+    "id" : 3,
+    "methodCalls" : [ {
+      "methodName" : "getPlayCounts",
+      "invocations" : [ {
+        "return" : 2,
+        "parameter" : [ ]
+      } ]
+    } ]
+  } ],
+  "objects" : [ {
+    "type" : "h11.User",
+    "fields" : [ {
+      "name" : "username",
+      "type" : "java.lang.String",
+      "value" : "User 6",
+      "id" : 0
+    }, {
+      "name" : "pricePerMonth",
+      "type" : "java.lang.Double",
+      "value" : "0.0",
+      "id" : 1
+    }, {
+      "name" : "playingHistory",
+      "type" : "java.util.ArrayList",
+      "value" : [ ],
+      "id" : 2
+    } ],
+    "id" : 3
+  } ],
+  "expected" : {
+    "type" : "null"
+  }
+} ]

@@ -1,4 +1,4 @@
-package h11;
+package h11.solution;
 
 import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
